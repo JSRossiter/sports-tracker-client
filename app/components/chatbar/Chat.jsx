@@ -42,7 +42,6 @@ class Chat extends Component {
       return dispatch(actions.receiveMessage(msg))
     });
     socket.on('user count', msg => {
-      console.log('user count', msg);
       dispatch(actions.updateUserCount(msg));
     })
   }

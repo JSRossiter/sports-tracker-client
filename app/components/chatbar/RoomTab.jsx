@@ -11,6 +11,7 @@ const RoomTab = props => (
     >
       { props.name }
     </a>
+    {/* TODO add close chat button*/}
   </div>
 );
 
