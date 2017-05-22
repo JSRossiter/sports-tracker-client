@@ -115,25 +115,8 @@ class Chat extends Component {
           />
 
           <div className="user-count">
-            { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } 'chatting'
+            { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } chatting
           </div>
-
-          <div className="message-list" id='messageList'>
-            <ul>
-              { messages.map(message =>
-                <Message
-                  key={ message.id }
-                  message={ message }
-                />
-              )}
-            </ul>
-          </div>
-
-          <MessageBox
-            input={ this.props.input }
-            onChange={ this.onChange }
-            handleSubmit={ this.handleSubmit }
-          />
 
           <div className="message-list" id='messageList'>
             <div>
@@ -145,6 +128,13 @@ class Chat extends Component {
               )}
             </div>
           </div>
+
+          <MessageBox
+            input={ this.props.input }
+            onChange={ this.onChange }
+            handleSubmit={ this.handleSubmit }
+          />
+
         </div>
       );
     } else {
