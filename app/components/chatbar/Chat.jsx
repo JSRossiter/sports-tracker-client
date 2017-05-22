@@ -115,7 +115,7 @@ class Chat extends Component {
           />
 
           <div className="user-count">
-            { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } chatting
+            { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } 'chatting'
           </div>
 
           <div className="message-list" id='messageList'>
@@ -135,14 +135,15 @@ class Chat extends Component {
             handleSubmit={ this.handleSubmit }
           />
 
-        <div className="message-list" id='messageList'>
-          <div>
-            { messages.map(message =>
-              <Message
-                key={ message.id }
-                message={ message }
-              />
-            )}
+          <div className="message-list" id='messageList'>
+            <div>
+              { messages.map(message =>
+                <Message
+                  key={ message.id }
+                  message={ message }
+                />
+              )}
+            </div>
           </div>
         </div>
       );
