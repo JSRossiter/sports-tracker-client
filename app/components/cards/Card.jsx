@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardFooter from './CardFooter';
+import CardMain from './CardMain';
 import PlayByPlay from './PlayByPlay';
+import CardFooter from './CardFooter';
+import cardProps from '../../prop_validations/card';
 
 export default function Card({ ...props }) {
   const name = `${props.awayTeam} @ ${props.homeTeam}`;
@@ -9,33 +11,17 @@ export default function Card({ ...props }) {
   return (
     <div className="card-deck">
       <div className="card">
-        <div className="card-block">
-          <div className="d-flex justify-content-around">
-            <div className="card-title">{ props.league }</div>
-          </div>
 
-          <div className="d-flex justify-content-around">
-            <div className="card-title">April 1, 2017</div>
-          </div>
+        <CardMain
+          league={ props.league }
+          homeTeam={ props.homeTeam }
+          awayTeam={ props.awayTeam }
+          homeScore={ props.homeScore }
+          awayScore={ props.awayScore }
+          quarter={ props.quarter }
+          timeRemaining={ props.timeRemaining }
 
-          <div className="d-flex justify-content-around">
-            <div className="card-text d-flex flex-column">
-              <div className="text-center">{ props.awayTeam }</div>
-              <div>{ props.awayScore }</div>
-            </div>
-
-            <div className="card-text d-flex flex-column">
-              <div>{ props.homeTeam }</div>
-              <div>{ props.homeScore }</div>
-            </div>
-          </div>
-
-          <div className="d-flex justify-content-around">
-            <div className="card-title">Quarter: { props.quarter } </div>
-            <div className="card-title">Time Remaining: { props.timeRemaining } </div>
-          </div>
-
-        </div>
+        />
 
         <PlayByPlay plays={ props.plays } />
 
@@ -52,15 +38,7 @@ export default function Card({ ...props }) {
 }
 
 Card.propTypes = {
-  plays: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  league: PropTypes.string.isRequired,
-  homeTeam: PropTypes.string.isRequired,
-  awayTeam: PropTypes.string.isRequired,
-  homeScore: PropTypes.number.isRequired,
-  awayScore: PropTypes.number.isRequired,
-  quarter: PropTypes.number.isRequired,
-  timeRemaining: PropTypes.number.isRequired,
-  gameId: PropTypes.number.isRequired,
+  ...cardProps,
   joinRoom: PropTypes.func.isRequired,
-  socket: PropTypes.object.isRequired
+  socket: PropTypes.object
 };
