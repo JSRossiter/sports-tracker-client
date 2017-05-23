@@ -14,12 +14,10 @@ const Dashboard = props => (
   </main>
 );
 
-const mapStateToProps = state =>
-    // const something
-  ({
-    allCards: state.cards,
-    socket: state.chat.socket
-  });
+const mapStateToProps = state => ({
+  allCards: state.cards,
+  socket: state.chat.socket
+});
 const mapDispatchToProps = dispatch => ({
   joinRoom: (room) => {
     dispatch(joinRoom(room));
