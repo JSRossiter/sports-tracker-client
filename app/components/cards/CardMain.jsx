@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cardProps from '../../prop_validations/card';
 
 const CardMain = ({ ...props }) => (

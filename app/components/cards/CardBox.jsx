@@ -24,7 +24,13 @@ export default function CardBox(props) {
 }
 
 CardBox.propTypes = {
-  allCards: PropTypes.arrayOf(PropTypes.shape(cardProps).isRequired).isRequired,
+  allCards: PropTypes.arrayOf(PropTypes.shape({
+    ...cardProps,
+    plays: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      content: PropTypes.string.isRequired
+    }).isRequired).isRequired
+  }).isRequired).isRequired,
   joinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object
 };

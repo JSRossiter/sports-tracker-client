@@ -39,6 +39,10 @@ export default function Card({ ...props }) {
 
 Card.propTypes = {
   ...cardProps,
+  plays: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    content: PropTypes.string.isRequired
+  }).isRequired).isRequired,
   joinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object
 };
