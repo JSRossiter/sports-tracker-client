@@ -10,7 +10,14 @@ export default class CardBox extends Component {
     return (
       <div className="card-container col-xs-12 col-s-9">
         <div className="row">
-          { allCards.map(card => <Card key={ card.gameId } joinRoom={ joinRoom } socket={ socket } { ...card } />) }
+          {allCards.map(card => (
+            <Card
+              key={ card.gameId }
+              joinRoom={ joinRoom }
+              socket={ socket }
+              { ...card }
+            />
+          ))}
         </div>
       </div>
     );
