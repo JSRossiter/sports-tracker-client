@@ -10,7 +10,7 @@ export default class Sidebar extends Component {
       <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
         <ul className="nav nav-pills flex-column">
           <li className="nav-item" data-toggle="collapse" data-target="#nfl">
-            <a className="nav-link" href=""><img className="league-icon" src="/img/nhl.png" alt="nhl" /> NHL <span className="arrow" /></a>
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/nhl.png" alt="nhl" /> NHL <span className="arrow" /></a>
           </li>
           <ul className="sub-menu collapse" id="nfl">
             <li>Game 1</li>
@@ -20,17 +20,17 @@ export default class Sidebar extends Component {
         </ul>
         <ul className="nav nav-pills flex-column">
           <li className="nav-item">
-            <a className="nav-link" href=""><img className="league-icon" src="/img/nba.png" alt="nhl" /> NBA <span className="arrow" /></a>
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/nba.png" alt="nhl" /> NBA <span className="arrow" /></a>
           </li>
         </ul>
         <ul className="nav nav-pills flex-column">
           <li className="nav-item">
-            <a className="nav-link" href=""><img className="league-icon" src="/img/mlb.png" alt="mlb" /> MLB <span className="arrow" /></a>
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/mlb.png" alt="mlb" /> MLB <span className="arrow" /></a>
           </li>
         </ul>
         <ul className="nav nav-pills flex-column">
           <li className="nav-item">
-            <a className="nav-link" href=""><img className="league-icon" src="/img/nfl.png" alt="nhl" /> NFL <span className="arrow" /></a>
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/nfl.png" alt="nhl" /> NFL <span className="arrow" /></a>
           </li>
         </ul>
       </nav>
