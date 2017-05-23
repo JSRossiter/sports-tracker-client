@@ -10,7 +10,7 @@ export default class CardBox extends Component {
     return (
       <section className="col-xs-12 col-md-9">
         <div className="card-deck">
-            { allCards.map(card => <Card key={ card.gameId } joinRoom={ joinRoom } socket={ socket } { ...card } />) }
+         { allCards.map(card => <Card key={ card.gameId } joinRoom={ joinRoom } socket={ socket } { ...card } />) }
         </div>
       </section>
     );
