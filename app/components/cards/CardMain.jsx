@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cardProps from '../../prop_validations/card';
 
 const CardMain = ({ ...props }) => (
   <div className="card-block">
@@ -31,15 +32,7 @@ const CardMain = ({ ...props }) => (
   </div>
     );
 
-CardMain.propTypes = {
-  league: PropTypes.string.isRequired,
-  homeTeam: PropTypes.string.isRequired,
-  awayTeam: PropTypes.string.isRequired,
-  homeScore: PropTypes.number.isRequired,
-  awayScore: PropTypes.number.isRequired,
-  quarter: PropTypes.number.isRequired,
-  timeRemaining: PropTypes.number.isRequired
-};
+CardMain.propTypes = cardProps;
 
 export default CardMain;
 
