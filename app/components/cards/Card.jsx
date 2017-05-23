@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardFooter from './CardFooter';
+import PlayByPlay from './PlayByPlay';
 
 export default function Card({ ...props }) {
   const name = `${props.awayTeam} @ ${props.homeTeam}`;
@@ -33,7 +34,10 @@ export default function Card({ ...props }) {
             <div className="card-title">Quarter: { props.quarter } </div>
             <div className="card-title">Time Remaining: { props.timeRemaining } </div>
           </div>
+
         </div>
+
+        <PlayByPlay plays={ props.plays } />
 
         <CardFooter
           name={ name }
@@ -48,6 +52,7 @@ export default function Card({ ...props }) {
 }
 
 Card.propTypes = {
+  plays: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   league: PropTypes.string.isRequired,
   homeTeam: PropTypes.string.isRequired,
   awayTeam: PropTypes.string.isRequired,

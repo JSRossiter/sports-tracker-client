@@ -20,7 +20,7 @@ const CardFooter = ({ ...props }) => {
       <button className="btn btn-info mr-auto p-2">Play-by-Play</button>
       <i className="p-2 fa fa-share-alt" aria-hidden="true" />
       <i className="p-2 fa fa-rss" aria-hidden="true" />
-      <a onClick={ () => joinChat(name, props.gameId) } role="button" tabIndex={ 0 }>
+      <a onClick={ () => joinChat(props.name, props.gameId) } role="button" tabIndex={ 0 }>
         <i className="p-2 fa fa-commenting" aria-hidden="true" />
       </a>
     </div>
@@ -28,6 +28,7 @@ const CardFooter = ({ ...props }) => {
 };
 
 CardFooter.propTypes = {
+  name: PropTypes.string.isRequired,
   gameId: PropTypes.number.isRequired,
   joinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object.isRequired
