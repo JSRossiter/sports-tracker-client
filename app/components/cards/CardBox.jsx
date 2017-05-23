@@ -8,11 +8,9 @@ export default class CardBox extends Component {
     const { allCards, joinRoom, socket } = this.props;
 
     return (
-      <div className="card-container col-xs-12 col-s-9">
-        <div className="row d-flex justify-content-xs-center justify-content-md-around">
-          { allCards.map(card => <Card key={ card.gameId } joinRoom={ joinRoom } socket={ socket } { ...card } />) }
-        </div>
-      </div>
+      <section className="row text-center placeholders">
+        { allCards.map(card => <Card key={ card.gameId } joinRoom={ joinRoom } socket={ socket } { ...card } />) }
+      </section>
     );
   }
 }

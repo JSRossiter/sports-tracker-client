@@ -4,7 +4,10 @@ import CardBox from '../components/cards/CardBox';
 import { joinRoom } from '../actions/chat';
 
 const Dashboard = props => (
-  <CardBox { ...props } />
+  <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+    <h1>Dashboard</h1>
+    <CardBox { ...props } />
+  </main>
 );
 
 const mapStateToProps = state =>

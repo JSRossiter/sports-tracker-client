@@ -7,52 +7,33 @@ import MLB from './MLB';
 export default class Sidebar extends Component {
   render() {
     return (
-      <div className="nav-side-menu bg-inverse">
-        <div className="brand">Sports</div>
-        <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content" />
-        <div className="menu-list">
-          <ul id="menu-content" className="menu-content collapse out">
-            <li><a href="#"><i className="fa fa-user fa-lg" /> Login</a></li>
-            <li><a href="#"><i className="fa fa-users fa-lg" /> Register</a></li>
+      <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item" data-toggle="collapse" data-target="#nfl">
+            <a className="nav-link" href=""><img className="league-icon" src="/img/nhl.png" alt="nhl" /> NHL <span className="arrow" /></a>
+          </li>
+          <ul className="sub-menu collapse" id="nfl">
+            <li>Game 1</li>
+            <li>Game 2</li>
+            <li>Game 3</li>
           </ul>
-        </div>
-
-        <ul>
-          <li data-toggle="collapse" data-target="#nhl" className="collapsed">
-            <a href=""><img className="league-icon" src="/img/nhl.png" alt="nhl" /> NHL <span className="arrow" /></a>
+        </ul>
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item">
+            <a className="nav-link" href=""><img className="league-icon" src="/img/nba.png" alt="nhl" /> NBA <span className="arrow" /></a>
           </li>
         </ul>
-        <ul className="sub-menu collapse" id="nhl">
-
-        </ul>
-
-        <ul>
-          <li data-toggle="collapse" data-target="#nfl" className="collapsed">
-            <a href=""><img className="league-icon" src="/img/nfl.png" alt="nfl" /> NFL <span className="arrow" /></a>
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item">
+            <a className="nav-link" href=""><img className="league-icon" src="/img/mlb.png" alt="mlb" /> MLB <span className="arrow" /></a>
           </li>
         </ul>
-        <ul className="sub-menu collapse" id="nfl">
-
-        </ul>
-
-        <ul>
-          <li data-toggle="collapse" data-target="#mlb" className="collapsed">
-            <a href=""><img className="league-icon" src="/img/mlb.png" alt="mlb" /> MLB <span className="arrow" /></a>
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item">
+            <a className="nav-link" href=""><img className="league-icon" src="/img/nfl.png" alt="nhl" /> NFL <span className="arrow" /></a>
           </li>
         </ul>
-        <ul className="sub-menu collapse" id="mlb">
-
-        </ul>
-
-        <ul>
-          <li data-toggle="collapse" data-target="#nba" className="collapsed">
-            <a href=""><img className="league-icon" src="/img/nba.png" alt="nba" /> NBA <span className="arrow" /></a>
-          </li>
-        </ul>
-        <ul className="sub-menu collapse" id="nba">
-
-        </ul>
-      </div>
+      </nav>
     );
   }
 }
