@@ -10,26 +10,25 @@ export default function Card({ ...props }) {
 
   return (
     <div className="card mb-3 ml-3 mr-3">
-        <CardMain
-          league={ props.league }
-          homeTeam={ props.homeTeam }
-          awayTeam={ props.awayTeam }
-          homeScore={ props.homeScore }
-          awayScore={ props.awayScore }
-          quarter={ props.quarter }
-          timeRemaining={ props.timeRemaining }
-        />
+      <CardMain
+        league={ props.league }
+        homeTeam={ props.homeTeam }
+        awayTeam={ props.awayTeam }
+        homeScore={ props.homeScore }
+        awayScore={ props.awayScore }
+        quarter={ props.quarter }
+        timeRemaining={ props.timeRemaining }
+      />
 
-        <PlayByPlay plays={ props.plays } display={ props.displayPlayByPlay } />
+      <PlayByPlay plays={ props.plays } display={ props.displayPlayByPlay } />
 
-        <CardFooter
-          name={ name }
-          socket={ props.socket }
-          joinRoom={ props.joinRoom }
-          gameId={ props.gameId }
-          togglePlayByPlay={ props.togglePlayByPlay }
-        />
-      </div>
+      <CardFooter
+        name={ name }
+        socket={ props.socket }
+        joinRoom={ props.joinRoom }
+        gameId={ props.gameId }
+        togglePlayByPlay={ props.togglePlayByPlay }
+      />
     </div>
   );
 }
