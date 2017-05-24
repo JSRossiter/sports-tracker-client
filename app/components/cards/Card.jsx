@@ -10,32 +10,38 @@ export default function Card({ ...props }) {
 
   return (
     <div className="card mb-3 ml-3 mr-3">
-      <CardMain
-        league={ props.league }
-        homeTeam={ props.homeTeam }
-        awayTeam={ props.awayTeam }
-        homeScore={ props.homeScore }
-        awayScore={ props.awayScore }
-        quarter={ props.quarter }
-        timeRemaining={ props.timeRemaining }
-      />
-      <PlayByPlay plays={ props.plays } />
-      <CardFooter
-        name={ name }
-        socket={ props.socket }
-        joinRoom={ props.joinRoom }
-        gameId={ props.gameId }
-      />
+        <CardMain
+          league={ props.league }
+          homeTeam={ props.homeTeam }
+          awayTeam={ props.awayTeam }
+          homeScore={ props.homeScore }
+          awayScore={ props.awayScore }
+          quarter={ props.quarter }
+          timeRemaining={ props.timeRemaining }
+        />
+
+        <PlayByPlay plays={ props.plays } display={ props.displayPlayByPlay } />
+
+        <CardFooter
+          name={ name }
+          socket={ props.socket }
+          joinRoom={ props.joinRoom }
+          gameId={ props.gameId }
+          togglePlayByPlay={ props.togglePlayByPlay }
+        />
+      </div>
     </div>
   );
 }
 
 Card.propTypes = {
   ...cardProps,
+  displayPlayByPlay: PropTypes.bool.isRequired,
   plays: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired
   }).isRequired).isRequired,
+  togglePlayByPlay: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object
 };
