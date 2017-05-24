@@ -9,6 +9,7 @@ export default function CardBox(props) {
 
   return (
     <div className="col-xs-12 col-md-9">
+      <h1>Dashboard</h1>
       <div className="card-deck">
         { allCards.map(card => (
           <Card

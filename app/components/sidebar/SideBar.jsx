@@ -51,21 +51,21 @@ class Sidebar extends Component {
           </ul>
         </ul>
         <ul className="nav nav-pills flex-column">
+          <li className="nav-item" data-toggle="collapse" data-target="#nba">
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/nba.png" alt="nba" /> NBA <span className="arrow" /></a>
+          </li>
+          <ul className="sub-menu collapse" id="nba">
+            { this.props.gamesNBA.map(game => <Game key={ game.id } {...game}/> ) }
+            { this.props.gamesNBA.length == 0 && <li>Sorry, no games today</li> }
+          </ul>
+        </ul>
+        <ul className="nav nav-pills flex-column">
           <li className="nav-item" data-toggle="collapse" data-target="#mlb">
             <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/mlb.png" alt="mlb" /> MLB <span className="arrow" /></a>
           </li>
           <ul className="sub-menu collapse" id="mlb">
             { this.props.gamesMLB.map(game => <Game key={ game.id } {...game}/> ) }
             { this.props.gamesMLB.length == 0 && <li>Sorry, no games today</li> }
-          </ul>
-        </ul>
-        <ul className="nav nav-pills flex-column">
-          <li className="nav-item" data-toggle="collapse" data-target="#nba">
-            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/mlb.png" alt="nba" /> NBA <span className="arrow" /></a>
-          </li>
-          <ul className="sub-menu collapse" id="mlb">
-            { this.props.gamesNBA.map(game => <Game key={ game.id } {...game}/> ) }
-            { this.props.gamesNBA.length == 0 && <li>Sorry, no games today</li> }
           </ul>
         </ul>
       </nav>
