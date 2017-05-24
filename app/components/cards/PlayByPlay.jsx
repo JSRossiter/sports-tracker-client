@@ -3,24 +3,25 @@ import PropTypes from 'prop-types';
 
 const PlayByPlay = ({ ...props }) => {
   if (props.display) {
-    console.log(props.plays);
     return (
-      <div className="play-by-play d-flex">
-        <span>Play-by-play</span>
+      <div className="card-pbp">
         <ul>
           { props.plays.map((play) => {
             switch (play.sport) {
               case 'nhl':
                 return (
                   <li key={ play.id } className={ play.style }>
-                    <span className="time-play-nhl">{ play.time } </span>
                     { play.content }
                   </li>
                 );
               case 'mlb':
                 return <li key={ play.id } className={ play.style }>{ play.content }</li>;
               case 'nba':
-                return <li key={ play.id }>{ play.content }</li>;
+                return (
+                  <li key={ play.id }>
+                    <span className="time-play-nba">{ play.time } - </span>
+                    { play.content }
+                  </li>);
               default:
                 return null;
             }

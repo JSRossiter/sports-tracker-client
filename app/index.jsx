@@ -20,17 +20,17 @@ const initialState = {
       display: 'BASIC', // 'STATS', 'PLAY_BY_PLAY' other options
       homeTeam: 'SAS',
       awayTeam: 'GSW',
-      homeScore: 150,
-      awayScore: 85,
+      homeScore: 91,
+      awayScore: 120,
       quarter: '4',
       timeRemaining: '10:09',
       displayPlayByPlay: true,
       scoreLoading: false,
       plays: [
-        { id: 1, content: 'Steph scores a 3', sport: 'nba' },
-        { id: 2, content: 'Steph scores a 3', sport: 'nba' },
-        { id: 3, content: 'Steph scores a FG', sport: 'nba' },
-        { id: 4, content: 'Someone else scores?', sport: 'nba' }
+        { id: 1, content: 'Steph scores a 3', sport: 'nba', time: '10:11' },
+        { id: 2, content: 'Steph scores a 3', sport: 'nba', time: '10:34' },
+        { id: 3, content: 'Steph scores a FG', sport: 'nba', time: '11:18' },
+        { id: 4, content: 'Someone else scores?', sport: 'nba', time: '0:11' }
       ],
       gameStarted: true
     },
@@ -59,7 +59,24 @@ const initialState = {
       inningsHalf: 'top',
       scoreLoading: true,
       displayPlayByPlay: false,
-      plays: []
+      plays: [
+        { id: 1, content: 'Batter singled', sport: 'mlb' },
+        { id: 2, content: 'Batter singled', sport: 'mlb' },
+        { id: 3, content: 'Batter singled', sport: 'mlb' },
+        { id: 4, content: 'Batter doubled', sport: 'mlb' },
+        { id: 5, content: 'Batter singled', sport: 'mlb' },
+        { id: 6, content: 'Batter singled', sport: 'mlb' },
+        { id: 7, content: 'Batter singled', sport: 'mlb' },
+        { id: 8, content: 'Batter grounded out', sport: 'mlb' },
+        { id: 9, content: 'Batter singled', sport: 'mlb' },
+        { id: 10, content: 'Batter singled', sport: 'mlb' },
+        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'mlb', style: 'scored' },
+        { id: 12, content: 'Batter singled', sport: 'mlb' },
+        { id: 13, content: 'Batter singled', sport: 'mlb' },
+        { id: 14, content: 'Batter singled', sport: 'mlb' },
+        { id: 15, content: 'Batter singled', sport: 'mlb' },
+        { id: 16, content: 'Batter singled', sport: 'mlb' }
+      ]
     },
     {
       gameId: 4,
