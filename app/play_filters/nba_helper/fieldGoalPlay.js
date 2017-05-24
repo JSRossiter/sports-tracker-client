@@ -6,19 +6,11 @@ module.exports = function fieldGoalPlay (fieldGoalAttempt) {
   const points = fieldGoalAttempt.Points;
   let play;
 
-  switch (result) {
-    case 'missed':
-      play = `${shooter} ${result} ${shot} for ${points} points`;
-      break;
-    case 'blocked':
-      play = `${shooter} ${shot} ${result} by ${fieldGoalAttempt.blockingPlayer.LastName}`;
-      break;
-    case 'scored':
-      play = `${shooter} ${result} ${shot} for ${points} points`;
-      break;
-    default:
-      return;
+  if (result === 'blocked'){
+    play = `${shooter} ${shot} ${result} by ${fieldGoalAttempt.blockingPlayer.LastName}`;
+  } else {
+    play = `${shooter} ${result} ${shot} for ${points} points`;
   }
-
+  
   return {team, play};
 }
