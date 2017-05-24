@@ -1,5 +1,56 @@
 .close-card {
   position: absolute;
-  top: 11px;
-  right: 15px;
+  top: 1px;
+  right: 5px;
+  color: grey;
+  &:hover {
+    color: black;
+  }
+}
+.card {
+  width: 350px;
+}
+.card-block {
+  padding: 20px 10px 10px 10px;
+}
+
+.nba-team-logo {
+  width: 75px;
+  padding: 10px;
+}
+
+.nba-team-name {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.nba-score {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.nba-score-home, .nba-score-away {
+  padding: 50px;
+}
+
+.nba-time {
+  margin-top: 5px;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.card-pbp-btn {
+  font-size: 0.8rem;
+  padding: 6px 15px;
+}
+
+.card-social {
+  position: absolute;
+  bottom: 0px;
+  right: 5px;
+}
+
+.card-footer {
+  padding: 0;
+  height: 32px;
 }

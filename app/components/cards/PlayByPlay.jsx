@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 const PlayByPlay = ({ ...props }) => {
   if (props.display) {
+    console.log(props.plays);
     return (
       <div className="play-by-play d-flex">
-        <h4>Play-by-play</h4>
+        <span>Play-by-play</span>
         <ul>
           { props.plays.map((play) => {
             switch (play.sport) {
