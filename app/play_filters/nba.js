@@ -7,10 +7,9 @@ const substitutionPlay = require('./nba_helper/substitutionPlay');
 const turnoverPlay = require('./nba_helper/turnoverPlay');
 const violationPlay = require('./nba_helper/violationPlay')
 
-
 module.exports = function pbp(data) {
   const game = data.gameplaybyplay.game; 
-  const playList = sample.gameplaybyplay.plays.play.map((play, id) => {
+  const playList = data.gameplaybyplay.plays.play.map((play, id) => {
     const eachPlay = {
       id: id,
       time: play.time,
