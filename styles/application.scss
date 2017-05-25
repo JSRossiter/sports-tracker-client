@@ -8,10 +8,11 @@ $inactive-btn-color: grey;
 $hover-btn-color: black;
 $unread-color: #bdbdbd;
 $bg-color: #f7f7f7;
+$card-shadow-color: grey;
 
 @import 'main';
-@import 'dashboard';
 @import 'chatbar';
 @import 'sidebar';
 @import 'card';
+@import 'dashboard';
 @import 'tooltip';

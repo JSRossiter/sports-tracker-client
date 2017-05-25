@@ -11,7 +11,7 @@ export default function Card({ ...props }) {
   const name = `${props.awayTeam}/${props.homeTeam}`;
 
   return (
-    <div className="card mb-3 ml-3 mr-3">
+    <div className="game-card">
       { props.league === 'NBA' && <CardMainNBA
         gameId={ props.gameId }
         league={ props.league }

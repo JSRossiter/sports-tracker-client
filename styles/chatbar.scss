@@ -76,7 +76,9 @@
     height: 30px;
     #chat-input{
       font-size: 0.8em;
-      width: 207px;
+      @media (min-width: 992px) {
+        width: 100%;
+      }
     }
     .btn {
       line-height: 0.8;
@@ -95,7 +97,7 @@
 
 .chatbar-appear.chatbar-appear-active {
   opacity: 1;
-  transition: opacity 2500ms ease-in;
+  transition: opacity 500ms ease-in;
 }
 
 .chatbar-leave {
