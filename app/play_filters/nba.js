@@ -63,8 +63,10 @@ module.exports = function createPlayString(data) {
           break;
       } 
     }
+    if(!eachPlay.content){
+      return; 
+    }
     return eachPlay;
   });
-  
-  return playList.filter((play) => play !== undefined);
+  return playList.filter((play) => play);
 }
