@@ -7,8 +7,10 @@
   box-shadow: 0px 0px 5px 2px $card-shadow-color;
   flex: 0 0 auto;
   position: relative;
+  background-color: white;
+
   @media (max-width: 767px) {
-    width: calc(100vw - 20px);
+    width: calc(100vw - 60px);
   }
 }
 
