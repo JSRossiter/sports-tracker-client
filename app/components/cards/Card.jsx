@@ -24,7 +24,7 @@ export default function Card({ ...props }) {
         closeCard={ props.closeCard }
       />
     }
-      { props.league === 'MLB' && <CardMainMLB
+      { props.league === 'mlb' && <CardMainMLB
         gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }
@@ -36,7 +36,7 @@ export default function Card({ ...props }) {
         closeCard={ props.closeCard }
       />
     }
-      { props.league === 'NHL' && <CardMainNHL
+      { props.league === 'nhl' && <CardMainNHL
         gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }
@@ -55,6 +55,7 @@ export default function Card({ ...props }) {
         name={ name }
         socket={ props.socket }
         joinRoom={ props.joinRoom }
+        postJoinRoom={ props.postJoinRoom }
         gameId={ props.gameId }
         togglePlayByPlay={ props.togglePlayByPlay }
         gameStarted={ props.gameStarted }

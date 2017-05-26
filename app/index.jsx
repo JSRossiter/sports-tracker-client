@@ -1,8 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import io from 'socket.io-client';
+import createSocketIoMiddleware from 'redux-socket.io';
 import sportsApp from './reducers/index';
 import App from './containers/App';
 
@@ -17,7 +19,6 @@ const initialState = {
     {
       gameId: 1,
       league: 'NBA',
-      display: 'BASIC', // 'STATS', 'PLAY_BY_PLAY' other options
       homeTeam: 'SAS',
       awayTeam: 'GSW',
       homeScore: 91,
@@ -27,10 +28,10 @@ const initialState = {
       displayPlayByPlay: true,
       scoreLoading: false,
       plays: [
-        { id: 1, content: 'Steph scores a 3', sport: 'nba', time: '10:11' },
-        { id: 2, content: 'Steph scores a 3', sport: 'nba', time: '10:34' },
-        { id: 3, content: 'Steph scores a FG', sport: 'nba', time: '11:18' },
-        { id: 4, content: 'Someone else scores?', sport: 'nba', time: '0:11' }
+        { id: 1, content: 'Steph scores a 3', sport: 'NBA', time: '10:11' },
+        { id: 2, content: 'Steph scores a 3', sport: 'NBA', time: '10:34' },
+        { id: 3, content: 'Steph scores a FG', sport: 'NBA', time: '11:18' },
+        { id: 4, content: 'Someone else scores?', sport: 'NBA', time: '0:11' }
       ],
       gameStarted: true
     },
@@ -59,6 +60,7 @@ const initialState = {
       inningsHalf: 'top',
       scoreLoading: true,
       displayPlayByPlay: false,
+      gameStarted: true,
       plays: [
         { id: 1, content: 'Batter singled', sport: 'mlb' },
         { id: 2, content: 'Batter singled', sport: 'mlb' },
@@ -77,6 +79,20 @@ const initialState = {
         { id: 15, content: 'Batter singled', sport: 'mlb' },
         { id: 16, content: 'Batter singled', sport: 'mlb' }
       ]
+    },
+    {
+      gameId: 44,
+      league: 'NBA',
+      homeTeam: 'LAL',
+      awayTeam: 'SAC',
+      homeScore: 35,
+      awayScore: 25,
+      quarter: '2',
+      timeRemaining: 36,
+      scoreLoading: false,
+      displayPlayByPlay: false,
+      plays: [],
+      gameStarted: true
     },
     {
       gameId: 34,
@@ -146,12 +162,24 @@ const initialState = {
     receivedAt: Date.now()
   }
 };
+const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
+
+const socket = io(SOCKET_HOST);
+const socketIoMiddleware = createSocketIoMiddleware(socket, 'socket/');
+
+/* eslint-disable no-underscore-dangle */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
+const middlewares = [
+  thunk,
+  socketIoMiddleware
+];
 
 const store = createStore(
   sportsApp,
   initialState,
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  composeEnhancers(applyMiddleware(...middlewares),
+  ));
 
 render(
   <Provider store={ store }>
