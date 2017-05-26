@@ -11,7 +11,8 @@ const CardFooter = ({ ...props }) => {
       input: '',
       unread: false
     };
-    props.socket.emit('join', { room: id });
+    props.postJoinRoom('join', { room: id });
+    // props.socket.emit('join', { room: id });
     props.joinRoom(room);
   };
 

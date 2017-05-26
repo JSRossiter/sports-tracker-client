@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Chat from '../components/chatbar/Chat';
 import * as actions from '../actions/chat';
+import { socketAction } from '../middlewares/websocket';
 
 const ChatBar = props => (
   <Chat { ...props } />
@@ -15,21 +15,20 @@ const mapStateToProps = (state) => {
     rooms: state.chat.rooms,
     active: state.chat.active,
     input,
-    user: state.user,
-    socket: state.chat.socket
+    user: state.user
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getSocket: (socket) => {
-    dispatch(actions.getSocket(socket));
-  },
-  receiveMessage: (msg) => {
-    dispatch(actions.receiveMessage(msg));
-  },
-  updateUserCount: (msg) => {
-    dispatch(actions.updateUserCount(msg));
-  },
+  // getSocket: (socket) => {
+  //   dispatch(actions.getSocket(socket));
+  // },
+  // receiveMessage: (msg) => {
+  //   dispatch(actions.receiveMessage(msg));
+  // },
+  // updateUserCount: (msg) => {
+  //   dispatch(actions.updateUserCount(msg));
+  // },
   sendMessage: () => {
     dispatch(actions.sendMessage());
   },
@@ -41,7 +40,9 @@ const mapDispatchToProps = dispatch => ({
   },
   leaveRoom: (roomId) => {
     dispatch(actions.leaveRoom(roomId));
-  }
+  },
+  postLeaveRoom: socketAction(actions.postLeaveRoom),
+  postMessage: socketAction(actions.postMessage)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatBar);

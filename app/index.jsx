@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sportsApp from './reducers/index';
 import App from './containers/App';
+import webSocketMiddleware from './middlewares/websocket';
 
 require('../styles/application.scss');
 
@@ -160,13 +161,19 @@ const initialState = {
     receivedAt: Date.now()
   }
 };
+const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middlewares = [
+  thunk,
+  webSocketMiddleware(SOCKET_HOST)
+];
+
 const store = createStore(
   sportsApp,
   initialState,
-  composeEnhancers(applyMiddleware(thunk),
+  composeEnhancers(applyMiddleware(...middlewares),
   ));
 /* eslint-enable */
 
