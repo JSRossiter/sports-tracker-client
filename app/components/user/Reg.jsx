@@ -8,8 +8,6 @@ export default class RegForm extends Component {
       email: '',
       password: ''
     }
-    this.handleKeyChange = this.handleKeyChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleKeyChange = (key) => {

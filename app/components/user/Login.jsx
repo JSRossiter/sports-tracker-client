@@ -7,8 +7,6 @@ export default class LoginForm extends Component {
       username: '',
       password: ''
     }
-    this.handleKeyChange = this.handleKeyChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleKeyChange = (key) => {
@@ -29,7 +27,7 @@ export default class LoginForm extends Component {
     if (formData.username.length < 1 || formData.password.length < 1) {
       return false;
     }
-    console.log(formData);
+
     $.ajax({
       url: 'http://localhost:8080/login',
       dataType: 'json',

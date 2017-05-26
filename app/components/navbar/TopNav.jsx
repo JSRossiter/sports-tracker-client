@@ -10,35 +10,29 @@ export default class TopNav extends Component {
       regModalIsOpen: false,
       loginModalIsOpen: false
     }
-
-    this.regOpenModal = this.regOpenModal.bind(this);
-    this.regCloseModal = this.regCloseModal.bind(this);
-    this.loginOpenModal = this.loginOpenModal.bind(this);
-    this.loginCloseModal = this.loginCloseModal.bind(this);
-    this.resetState = this.resetState.bind(this);
   }
   
   // reset state
-  resetState() {
+  resetState = () => {
     this.setState({
       regModalIsOpen: false,
       loginModalIsOpen: false
     });
   }
 
-  regOpenModal() {
+  regOpenModal = () => {
     this.setState({ regModalIsOpen: true });
   }
 
-  regCloseModal() {
+  regCloseModal = () => {
     this.resetState();
   }
 
-  loginOpenModal() {
+  loginOpenModal = () => {
     this.setState({ loginModalIsOpen: true });
   }
 
-  loginCloseModal() {
+  loginCloseModal = () => {
     this.resetState();
   }
 
