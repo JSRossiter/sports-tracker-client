@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Masonry from 'react-masonry-component';
+// const Packery = require('react-packery-component');
+import Packery from 'react-packery-draggabilly';
 import Card from './Card';
 import cardProps from '../../prop_validations/card';
 
-const masonryOptions = {
+const packeryOptions = {
   transitionDuration: 500,
-  fitWidth: true,
-  horizontalOrder: true,
+  // fitWidth: true,
+  // horizontalOrder: true,
   stagger: 30
 };
 
@@ -23,10 +24,11 @@ export default function CardBox(props) {
   return (
     <main className={ chatActive ? 'dashboard chat-active' : 'dashboard' }>
       <h1>Dashboard</h1>
-      <Masonry
+      <Packery
         className="game-card-box"
         elementType={ 'div' }
-        options={ masonryOptions }
+        options={ packeryOptions }
+        disableImagesLoaded={ false }
       >
         { allCards.map(card => (
           <Card
@@ -38,7 +40,7 @@ export default function CardBox(props) {
             { ...card }
           />
         ))}
-      </Masonry>
+      </Packery>
     </main>
   );
 }
