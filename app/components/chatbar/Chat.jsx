@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-// import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Message from './Message';
 import MessageBox from './MessageBox';
 import Rooms from './Rooms';
-// import { socketAction } from '../../middlewares/websocket';
-
-// const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
-// const socket = io.connect(SOCKET_HOST);
 
 class Chat extends Component {
   static propTypes = {
     rooms: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-    // getSocket: PropTypes.func.isRequired,
-    // receiveMessage: PropTypes.func.isRequired,
-    // updateUserCount: PropTypes.func.isRequired,
     sendMessage: PropTypes.func.isRequired,
+    postMessage: PropTypes.func.isRequired,
+    postLeaveRoom: PropTypes.func.isRequired,
     inputChange: PropTypes.func.isRequired,
     changeRoom: PropTypes.func.isRequired,
     leaveRoom: PropTypes.func.isRequired,
@@ -24,21 +18,6 @@ class Chat extends Component {
     input: PropTypes.string.isRequired,
     active: PropTypes.number.isRequired
   };
-
-  // constructor(props) {
-  //   super(props);
-
-    // socket.on('post', (msg) => {
-    //   props.receiveMessage(msg);
-    // });
-    // socket.on('user count', (msg) => {
-    //   props.updateUserCount(msg);
-    // });
-  // }
-
-  componentWillMount() {
-    // this.props.getSocket(socket);
-  }
 
   componentDidUpdate() {
     // autoscroll to the latest message in message list
@@ -71,8 +50,6 @@ class Chat extends Component {
         }
       };
       postMessage(message);
-
-      // socket.emit('post', message);
     }
   }
 
@@ -81,7 +58,6 @@ class Chat extends Component {
     const { leaveRoom, postLeaveRoom } = this.props;
     leaveRoom(roomId);
     postLeaveRoom(roomId);
-    // socket.emit('leave', { room: roomId });
   }
 
   render() {

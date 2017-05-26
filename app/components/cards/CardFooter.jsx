@@ -12,7 +12,6 @@ const CardFooter = ({ ...props }) => {
       unread: false
     };
     props.postJoinRoom(id);
-    // props.socket.emit('join', { room: id });
     props.joinRoom(room);
   };
 

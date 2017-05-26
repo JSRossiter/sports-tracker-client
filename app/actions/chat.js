@@ -39,14 +39,16 @@ export const getSocket = socket => ({
   socket
 });
 
-export const postMessage = message => ({
+export const postMessage = payload => ({
   type: 'POST_MESSAGE',
-  message
+  payload
 });
 
 export const postLeaveRoom = roomId => ({
   type: 'POST_LEAVE_ROOM',
-  roomId
+  payload: {
+    roomId
+  }
 });
 
 export const postJoinRoom = roomId => ({
