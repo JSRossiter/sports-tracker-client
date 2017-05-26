@@ -18,15 +18,15 @@ const PlayByPlay = ({ ...props }) => {
         <ul>
           { props.plays.map((play) => {
             switch (play.sport) {
-              case 'nhl':
+              case 'NHL':
                 return (
                   <li key={ play.id } className={ play.style }>
                     { play.content }
                   </li>
                 );
-              case 'mlb':
+              case 'MLB':
                 return <li key={ play.id } className={ play.style }>{ play.content }</li>;
-              case 'nba':
+              case 'NBA':
                 return (
                   <li key={ play.id }>
                     <span className="time-play-nba">{ play.time } - </span>
