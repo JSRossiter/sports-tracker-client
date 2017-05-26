@@ -51,6 +51,8 @@ export const postLeaveRoom = roomId => ({
 
 export const postJoinRoom = roomId => ({
   type: 'POST_JOIN_ROOM',
-  roomId
+  payload: {
+    roomId
+  }
 });
 

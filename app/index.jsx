@@ -3,9 +3,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import io from 'socket.io-client';
+import createSocketIoMiddleware from 'redux-socket.io';
 import sportsApp from './reducers/index';
 import App from './containers/App';
-import webSocketMiddleware from './middlewares/websocket';
 
 require('../styles/application.scss');
 
@@ -163,11 +164,15 @@ const initialState = {
 };
 const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
 
+const socket = io(SOCKET_HOST);
+const socketIoMiddleware = createSocketIoMiddleware(socket, 'socket/');
+
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
 const middlewares = [
   thunk,
-  webSocketMiddleware(SOCKET_HOST)
+  socketIoMiddleware
 ];
 
 const store = createStore(
@@ -175,7 +180,6 @@ const store = createStore(
   initialState,
   composeEnhancers(applyMiddleware(...middlewares),
   ));
-/* eslint-enable */
 
 render(
   <Provider store={ store }>

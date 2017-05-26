@@ -55,6 +55,7 @@ CardBox.propTypes = {
   }).isRequired).isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
+  postJoinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object,
   chatActive: PropTypes.bool.isRequired
 };
