@@ -85,10 +85,10 @@ class Chat extends Component {
         <CSSTransitionGroup
           transitionName="chatbar"
           transitionAppear={true}
-          transitionAppearTimeout={ 500 }
+          transitionAppearTimeout={ 700 }
           transitionEnter={ false }
           transitionLeave={ true }
-          transitionLeaveTimeout={ 300 }
+          transitionLeaveTimeout={ 10300 }
         >
           <div className="chat-container hidden-sm-down col-sm-3">
             <Rooms

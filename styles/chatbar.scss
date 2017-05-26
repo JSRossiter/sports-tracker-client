@@ -92,19 +92,19 @@
 }
 
 .chatbar-appear {
-  opacity: 0.01;
+  right: -300px;
 }
 
 .chatbar-appear.chatbar-appear-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+  right: 0px;
+  transition: right 700ms ease;
 }
 
 .chatbar-leave {
-  opacity: 1;
+  right: -300px;
 }
 
 .chatbar-leave.chatbar-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+  right: 0px;
+  transition: right 300ms ease;
 }
