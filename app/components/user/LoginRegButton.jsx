@@ -21,7 +21,10 @@ export default class LoginRegButton extends Component {
   }
 
   regOpenModal = () => {
-    this.setState({ regModalIsOpen: true });
+    this.setState({
+      loginModalIsOpen: false,
+      regModalIsOpen: true 
+    });
   }
 
   regCloseModal = () => {
@@ -29,7 +32,10 @@ export default class LoginRegButton extends Component {
   }
 
   loginOpenModal = () => {
-    this.setState({ loginModalIsOpen: true });
+    this.setState({
+      loginModalIsOpen: true,
+      regModalIsOpen: false 
+    });
   }
 
   loginCloseModal = () => {
@@ -57,6 +63,7 @@ export default class LoginRegButton extends Component {
             isOpen={ this.state.regModalIsOpen }
             onRequestClose={ this.regCloseModal }
             style={ modalStyles }
+            shouldCloseOnOverlayClick={ false }
             contentLabel="Reg Modal"
           >
             <h3 className="pl-0 d-flex modal-header">Registration: <i className="fa fa-times justify-content-right" onClick={ this.regCloseModal } /></h3>
@@ -73,6 +80,7 @@ export default class LoginRegButton extends Component {
             isOpen={ this.state.loginModalIsOpen }
             onRequestClose={ this.loginCloseModal }
             style={ modalStyles }
+            shouldCloseOnOverlayClick={ false }
             contentLabel="Reg Modal"
           >
             <h3 className="pl-0 d-flex modal-header">Login: <i className="fa fa-times justify-content-right" onClick={ this.loginCloseModal } /></h3>
