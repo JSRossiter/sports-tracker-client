@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Message from './Message';
 import MessageBox from './MessageBox';
@@ -88,7 +87,8 @@ class Chat extends Component {
       <CSSTransitionGroup
         transitionName="chatbar"
         transitionLeave
-        transitionLeaveTimeout={ 1000 }
+        transitionEnterTimeout={ 700 }
+        transitionLeaveTimeout={ 300 }
       >
         { activeRoom &&
         <div className="chat-container hidden-sm-down col-sm-3">
