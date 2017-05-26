@@ -91,20 +91,20 @@
   }
 }
 
-.chatbar-appear {
+.chatbar-enter {
   right: -300px;
 }
 
-.chatbar-appear.chatbar-appear-active {
+.chatbar-enter.chatbar-enter-active {
   right: 0px;
   transition: right 700ms ease;
 }
 
 .chatbar-leave {
-  right: -300px;
+  right: 0px;
 }
 
 .chatbar-leave.chatbar-leave-active {
-  right: 0px;
+  right: -300px;
   transition: right 300ms ease;
 }

@@ -17,9 +17,8 @@ const initialState = {
     {
       gameId: 1,
       league: 'NBA',
-      display: 'BASIC', // 'STATS', 'PLAY_BY_PLAY' other options
-      homeTeam: 'SAS',
-      awayTeam: 'GSW',
+      homeTeam: 'TOR',
+      awayTeam: 'SAS',
       homeScore: 91,
       awayScore: 120,
       quarter: '4',
@@ -76,7 +75,8 @@ const initialState = {
         { id: 14, content: 'Batter singled', sport: 'mlb' },
         { id: 15, content: 'Batter singled', sport: 'mlb' },
         { id: 16, content: 'Batter singled', sport: 'mlb' }
-      ]
+      ],
+      gameStarted: true
     },
     {
       gameId: 34,
@@ -147,11 +147,13 @@ const initialState = {
   }
 };
 
+/* eslint-disable no-underscore-dangle */
 const store = createStore(
   sportsApp,
   initialState,
   applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+/* eslint-enable */
 
 render(
   <Provider store={ store }>

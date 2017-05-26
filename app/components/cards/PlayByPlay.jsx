@@ -1,37 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-const PlayByPlay = ({ ...props }) => {
-  if (props.display) {
-    return (
-      <div className="game-card-pbp">
-        <ul>
-          { props.plays.map((play) => {
-            switch (play.sport) {
-              case 'nhl':
-                return (
-                  <li key={ play.id } className={ play.style }>
-                    { play.content }
-                  </li>
-                );
-              case 'mlb':
-                return <li key={ play.id } className={ play.style }>{ play.content }</li>;
-              case 'nba':
-                return (
-                  <li key={ play.id }>
-                    <span className="time-play-nba">{ play.time } - </span>
-                    { play.content }
-                  </li>);
-              default:
-                return null;
-            }
-          })}
-        </ul>
-      </div>
-    );
-  }
-  return null;
-};
+const PlayByPlay = ({ ...props }) => (
+  <CSSTransitionGroup
+    transitionName="pbp"
+    transitionAppear
+    transitionAppearTimeout={ 800 }
+    transitionEnter
+    transitionEnterTimeout={ 800 }
+    transitionLeave
+    transitionLeaveTimeout={ 800 }
+  >
+    { props.display &&
+    <div className="game-card-pbp">
+      <ul>
+        { props.plays.map((play) => {
+          switch (play.sport) {
+            case 'nhl':
+              return (
+                <li key={ play.id } className={ play.style }>
+                  { play.content }
+                </li>
+              );
+            case 'mlb':
+              return <li key={ play.id } className={ play.style }>{ play.content }</li>;
+            case 'nba':
+              return (
+                <li key={ play.id }>
+                  <span className="time-play-nba">{ play.time } - </span>
+                  { play.content }
+                </li>);
+            default:
+              return null;
+          }
+        })}
+      </ul>
+    </div>
+    }
+  </CSSTransitionGroup>
+);
 
 PlayByPlay.propTypes = {
   display: PropTypes.bool.isRequired,
