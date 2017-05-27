@@ -94,20 +94,25 @@ $table-border: 1px solid darkgrey;
   font-size: 0.8rem;
   padding: 0px 10px 0 10px;
   border-top: $border-style;
-  max-height: 100px;
+  height: 100px;
   overflow: auto;
   &.pbp-appear {
-    max-height: 0px;
+    height: 0px;
+    margin-bottom: 100px;
     &.pbp-appear-active {
-      transition: height 800ms ease;
-      max-height: 100px;
+      transition: height 800ms ease, margin-bottom 800ms ease;
+      height: 100px;
+      margin-bottom: 0px;
     }
   }
   &.pbp-leave {
-    max-height: 100px;
+    height: 100px;
+    margin-bottom: -100px;
+    border-top: none;
     &.pbp-leave-active {
-      transition: max-height 800ms ease;
-      max-height: 0px;
+      transition: height 800ms ease, margin-bottom 800ms ease;
+      height: 0px;
+      margin-bottom: 0px;
     }
   }
 

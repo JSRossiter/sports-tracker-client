@@ -78,8 +78,7 @@ CardFooter.propTypes = {
   gameId: PropTypes.number.isRequired,
   gameStarted: PropTypes.bool.isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
-  joinRoom: PropTypes.func.isRequired,
-  socket: PropTypes.object.isRequired
+  joinRoom: PropTypes.func.isRequired
 };
 
 export default CardFooter;

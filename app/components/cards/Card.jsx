@@ -53,17 +53,18 @@ export default function Card({ ...props }) {
       />
     }
 
-      <PlayByPlay plays={ props.plays } display={ props.displayPlayByPlay } />
+      <PlayByPlay key={ props.gameId } plays={ props.plays } display={ props.displayPlayByPlay } />
 
       <CardFooter
+        key={ props.gameId * -1 }
         name={ name }
-        socket={ props.socket }
         joinRoom={ props.joinRoom }
         postJoinRoom={ props.postJoinRoom }
         gameId={ props.gameId }
         togglePlayByPlay={ props.togglePlayByPlay }
         gameStarted={ props.gameStarted }
       />
+
     </div>
   );
 }
