@@ -136,9 +136,26 @@ const initialState = {
       awayTeam: 'VAN',
       homeScore: 9,
       awayScore: 5,
-      innings: '4',
-      inningsHalf: 'top',
-      scoreLoading: true,
+      period: '3',
+      timeRemaining: '1:07',
+      periods: [
+        {
+          period: '1',
+          awayScore: 3,
+          homeScore: 2
+        },
+        {
+          period: '2',
+          awayScore: 4,
+          homeScore: 1
+        },
+        {
+          period: '1',
+          awayScore: 2,
+          homeScore: 2
+        }
+      ],
+      scoreLoading: false,
       displayPlayByPlay: false,
       gameStarted: true,
       plays: []

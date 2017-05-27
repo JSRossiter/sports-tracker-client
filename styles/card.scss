@@ -23,12 +23,12 @@ $table-border: 1px solid darkgrey;
   -ms-user-select: none;
   user-select: none;
 
-  .nba-team-logo, .mlb-team-logo {
+  .nba-team-logo, .mlb-team-logo, .nhl-team-logo {
     width: 75px;
     padding: 10px;
   }
 
-  .nba-team-name, .mlb-team-name {
+  .nba-team-name, .mlb-team-name, .nhl-team-name {
     font-size: 1.3em;
     font-weight: 700;
   }
@@ -55,7 +55,7 @@ $table-border: 1px solid darkgrey;
       text-transform:capitalize;
     }
   }
-  .mlb-score {
+  .mlb-score, .nhl-score {
     overflow-x: auto;
     max-width: 330px;
     &::-webkit-scrollbar {
@@ -79,11 +79,14 @@ $table-border: 1px solid darkgrey;
       tbody tr {
         border-top: $table-border
       }
-      .mlb-score-team-name {
+      .mlb-score-team-name, .nhl-score-team-name {
         font-weight: 600;
         padding: 0 5px;
       }
     }
+  }
+  .nhl-time {
+    text-align: center;
   }
 }
 

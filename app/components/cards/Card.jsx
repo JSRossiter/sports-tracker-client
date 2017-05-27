@@ -46,7 +46,8 @@ export default function Card({ ...props }) {
         awayTeam={ props.awayTeam }
         homeScore={ props.homeScore }
         awayScore={ props.awayScore }
-        quarter={ props.quarter }
+        period={ props.period }
+        periods={ props.periods }
         timeRemaining={ props.timeRemaining }
         closeCard={ props.closeCard }
       />
