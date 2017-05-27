@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import CardMainNBA from './CardMainNBA';
 import CardMainNHL from './CardMainNHL';
 import CardMainMLB from './CardMainMLB';
@@ -52,18 +53,27 @@ export default function Card({ ...props }) {
         closeCard={ props.closeCard }
       />
     }
+      <CSSTransitionGroup
+        transitionName="pbp"
+        transitionAppear
+        transitionAppearTimeout={ 800 }
+        transitionEnter
+        transitionEnterTimeout={ 800 }
+        transitionLeave
+        transitionLeaveTimeout={ 800 }
+      >
+        { props.displayPlayByPlay && <PlayByPlay key={ props.gameId } plays={ props.plays } /> }
 
-      <PlayByPlay key={ props.gameId } plays={ props.plays } display={ props.displayPlayByPlay } />
-
-      <CardFooter
-        key={ props.gameId * -1 }
-        name={ name }
-        joinRoom={ props.joinRoom }
-        postJoinRoom={ props.postJoinRoom }
-        gameId={ props.gameId }
-        togglePlayByPlay={ props.togglePlayByPlay }
-        gameStarted={ props.gameStarted }
-      />
+        <CardFooter
+          key={ props.gameId * -1 }
+          name={ name }
+          joinRoom={ props.joinRoom }
+          postJoinRoom={ props.postJoinRoom }
+          gameId={ props.gameId }
+          togglePlayByPlay={ props.togglePlayByPlay }
+          gameStarted={ props.gameStarted }
+        />
+      </CSSTransitionGroup>
 
     </div>
   );

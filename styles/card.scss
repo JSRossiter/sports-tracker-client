@@ -14,6 +14,9 @@ $table-border: 1px solid darkgrey;
   @media (max-width: 767px) {
     width: calc(100vw - 60px);
   }
+  &:has(> div.game-card-pbp.pbp-enter) {
+    margin-bottom: 100px;
+  }
 }
 
 .game-card-main {
