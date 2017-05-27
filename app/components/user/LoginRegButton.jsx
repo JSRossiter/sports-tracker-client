@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import RegForm from './RegForm';
 import LoginForm from './LoginForm';
 import Modal from 'react-modal';
 
 export default class LoginRegButton extends Component {
+  static propTypes = {
+    handleLoginSession: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       regModalIsOpen: false,
-      loginModalIsOpen: false,
+      loginModalIsOpen: false
     }
   }
   
@@ -16,14 +21,14 @@ export default class LoginRegButton extends Component {
   resetState = () => {
     this.setState({
       regModalIsOpen: false,
-      loginModalIsOpen: false,
+      loginModalIsOpen: false
     });
   }
 
   regOpenModal = () => {
     this.setState({
       loginModalIsOpen: false,
-      regModalIsOpen: true 
+      regModalIsOpen: true
     });
   }
 
@@ -34,7 +39,7 @@ export default class LoginRegButton extends Component {
   loginOpenModal = () => {
     this.setState({
       loginModalIsOpen: true,
-      regModalIsOpen: false 
+      regModalIsOpen: false
     });
   }
 
@@ -67,9 +72,9 @@ export default class LoginRegButton extends Component {
             contentLabel="Reg Modal"
           >
             <h3 className="pl-0 d-flex modal-header">Registration: <i className="fa fa-times justify-content-right" onClick={ this.regCloseModal } /></h3>
-            <RegForm 
-              close={ this.regCloseModal } 
-              handleLoginSession={ this.props.handleLoginSession }       
+            <RegForm
+              close={ this.regCloseModal }
+              handleLoginSession={ this.props.handleLoginSession }
             />
           </Modal>
         </li>
@@ -84,9 +89,9 @@ export default class LoginRegButton extends Component {
             contentLabel="Reg Modal"
           >
             <h3 className="pl-0 d-flex modal-header">Login: <i className="fa fa-times justify-content-right" onClick={ this.loginCloseModal } /></h3>
-            <LoginForm 
-              close={ this.loginCloseModal } 
-              handleLoginSession={ this.props.handleLoginSession } 
+            <LoginForm
+              close={ this.loginCloseModal }
+              handleLoginSession={ this.props.handleLoginSession }
             />
           </Modal>
         </li>
