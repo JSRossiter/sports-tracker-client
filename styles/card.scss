@@ -96,11 +96,11 @@ $table-border: 1px solid darkgrey;
   border-top: $border-style;
   height: 100px;
   overflow: auto;
-  &.pbp-appear {
+  &.pbp-enter {
     height: 0px;
     margin-bottom: 100px;
-    &.pbp-appear-active {
-      transition: height 800ms ease, margin-bottom 800ms ease;
+    &.pbp-enter-active {
+      transition: height 800ms ease;
       height: 100px;
       margin-bottom: 0px;
     }
@@ -110,7 +110,7 @@ $table-border: 1px solid darkgrey;
     margin-bottom: -100px;
     border-top: none;
     &.pbp-leave-active {
-      transition: height 800ms ease, margin-bottom 800ms ease;
+      transition: height 800ms ease;
       height: 0px;
       margin-bottom: 0px;
     }
