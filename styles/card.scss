@@ -1,3 +1,5 @@
+$table-border: 1px solid darkgrey;
+
 .game-card-box {
   margin: 0 auto;
 }
@@ -20,12 +22,13 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  .nba-team-logo {
+
+  .nba-team-logo, .mlb-team-logo {
     width: 75px;
     padding: 10px;
   }
 
-  .nba-team-name {
+  .nba-team-name, .mlb-team-name {
     font-size: 1.3em;
     font-weight: 700;
   }
@@ -43,6 +46,44 @@
     margin-top: 5px;
     font-size: 0.8em;
     text-align: center;
+  }
+
+  .mlb-innings {
+    text-align: center;
+
+    &:first-letter {
+      text-transform:capitalize;
+    }
+  }
+  .mlb-score {
+    overflow-x: auto;
+    max-width: 330px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    table {
+      text-align: center;
+      margin: 5px auto;
+      font-size: 0.8rem;
+
+      td {
+        width: 24px;
+      }
+      th {
+        text-align: center;
+        padding: 0 3px;
+      }
+      td + td, th + th {
+        border-left: $table-border;
+      }
+      tbody tr {
+        border-top: $table-border
+      }
+      .mlb-score-team-name {
+        font-weight: 600;
+        padding: 0 5px;
+      }
+    }
   }
 }
 
