@@ -1,18 +1,25 @@
 .topnav {
-  // height: 55px;
-
-  .navbar-brand {
-  @media screen and (max-width: 991px) {
-    display: flex;
-    justify-content: center;
+  .logged-in-as {
+    color: #fff;
+    font-style: italic;
   }
-}
-    a.navitem {
-      color: #fff;
-      padding: 15px;
-      &:hover {
-        color: #ff0000;
-      }
+  .navbar-brand {
+    @media screen and (max-width: 991px) {
+      display: flex;
+      justify-content: center;
     }
-
+  }
+  a.navitem {
+    color: #fff;
+    padding: 15px;
+    &:hover {
+      color: #ff0000;
+    }
+  }
+  .navbar-toggler-left {
+    @media screen and (max-width: 767px) {
+      position: fixed;
+      top: 8px;
+    }
+  }
 }

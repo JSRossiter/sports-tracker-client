@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import RegForm from './RegForm';
 import LoginForm from './LoginForm';
-import Modal from 'react-modal';
 
 export default class LoginRegButton extends Component {
   static propTypes = {
@@ -16,7 +16,7 @@ export default class LoginRegButton extends Component {
       loginModalIsOpen: false
     }
   }
-  
+
   // reset state
   resetState = () => {
     this.setState({
@@ -30,6 +30,7 @@ export default class LoginRegButton extends Component {
       loginModalIsOpen: false,
       regModalIsOpen: true
     });
+    $('#topnavbar').removeClass('show');
   }
 
   regCloseModal = () => {
@@ -41,6 +42,7 @@ export default class LoginRegButton extends Component {
       loginModalIsOpen: true,
       regModalIsOpen: false
     });
+    $('#topnavbar').removeClass('show');
   }
 
   loginCloseModal = () => {
@@ -64,7 +66,7 @@ export default class LoginRegButton extends Component {
     return (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item text-right pb-2 pt-2">
-          <a className="navitem" onClick={ this.regOpenModal }>Registration</a>
+          <a className="reg-btn navitem" onClick={ this.regOpenModal }>Registration</a>
           <Modal
             isOpen={ this.state.regModalIsOpen }
             onRequestClose={ this.regCloseModal }
@@ -81,7 +83,7 @@ export default class LoginRegButton extends Component {
         </li>
 
         <li className="nav-item text-right pb-2 pt-2">
-          <a className="navitem" onClick={ this.loginOpenModal }>Login</a>
+          <a className="login-btn navitem" onClick={ this.loginOpenModal }>Login</a>
           <Modal
             isOpen={ this.state.loginModalIsOpen }
             onRequestClose={ this.loginCloseModal }
