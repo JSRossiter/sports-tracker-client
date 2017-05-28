@@ -200,7 +200,7 @@ describe('cards', () => {
     expectState.cards = [oldCards[1], oldCards[0]];
     expect(testState).to.eql(expectState);
   });
-  it('returns state for invalid input', () => {
+  it('returns previous state for invalid input', () => {
     const testState = reducers(state, { type: 'REPOSITION_CARD', from: 0, to: 2 });
     expect(testState).to.eql(state);
   });
