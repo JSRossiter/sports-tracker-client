@@ -2,52 +2,195 @@ import { expect } from 'chai';
 import reducers from '../app/reducers';
 
 describe('chat', () => {
+  let state;
+  beforeEach(() => {
+    state = {
+      user: {
+        name: 'anonymous'
+      },
+      chat: {
+        active: 1,
+        rooms: [
+          {
+            name: 'GSW/SAS',
+            id: 1,
+            messages: [],
+            onlineUsers: 1,
+            input: 'hello',
+            unread: false
+          }
+        ]
+      },
+      sidebar:
+      {
+        gamesNHL: [],
+        gamesNFL: [],
+        gamesMLB: [],
+        gamesNBA: [],
+        receivedAt: 1495923999551
+      },
+      cards: [
+        {
+          gameId: 1,
+          league: 'NBA',
+          homeTeam: 'SAS',
+          awayTeam: 'GSW',
+          homeScore: 91,
+          awayScore: 120,
+          quarter: '4',
+          timeRemaining: '10:09',
+          displayPlayByPlay: false,
+          scoreLoading: false,
+          gameOver: true,
+          plays: [],
+          gameStarted: true
+        },
+        {
+          gameId: 2,
+          league: 'MLB',
+          homeTeam: 'PIT',
+          awayTeam: 'TOR',
+          homeScore: 5,
+          awayScore: 6,
+          displayPlayByPlay: false,
+          scoreLoading: false,
+          currentInning: '4',
+          currentInningHalf: 'top',
+          innings: [
+            {
+              inning: 1,
+              awayScore: 2,
+              homeScore: 0
+            }
+          ],
+          plays: [],
+          gameStarted: true,
+          gameCompleted: false
+        }
+      ]
+    };
+  });
   it('clear input field on send', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [{ user: { name: 'anonymous' }, content: 'hi', id: '355a687d-9cd4-4378-a340-eef0944011ce' }, { user: { name: 'anonymous' }, content: 'hi', id: '76431b7e-4843-4c7f-ae7b-de5fc33e5c0c' }, { user: { name: 'anonymous' }, content: 'hi', id: 'dce19e54-7c5a-4cf7-b351-641e70fdf3c7' }], onlineUsers: 1, input: 'hello', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { type: 'SEND_MESSAGE' });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [{ user: { name: 'anonymous' }, content: 'hi', id: '355a687d-9cd4-4378-a340-eef0944011ce' }, { user: { name: 'anonymous' }, content: 'hi', id: '76431b7e-4843-4c7f-ae7b-de5fc33e5c0c' }, { user: { name: 'anonymous' }, content: 'hi', id: 'dce19e54-7c5a-4cf7-b351-641e70fdf3c7' }], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] });
+    const testState = reducers(state, { type: 'SEND_MESSAGE' });
+    const expectState = state;
+    expect(testState).to.eql(expectState);
   });
   it('update input on key press', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [{ user: { name: 'anonymous' }, content: 'hi', id: '355a687d-9cd4-4378-a340-eef0944011ce' }, { user: { name: 'anonymous' }, content: 'hi', id: '76431b7e-4843-4c7f-ae7b-de5fc33e5c0c' }, { user: { name: 'anonymous' }, content: 'hi', id: 'dce19e54-7c5a-4cf7-b351-641e70fdf3c7' }], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { type: 'INPUT_CHANGE', input: 'h', roomId: 1 });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [{ user: { name: 'anonymous' }, content: 'hi', id: '355a687d-9cd4-4378-a340-eef0944011ce' }, { user: { name: 'anonymous' }, content: 'hi', id: '76431b7e-4843-4c7f-ae7b-de5fc33e5c0c' }, { user: { name: 'anonymous' }, content: 'hi', id: 'dce19e54-7c5a-4cf7-b351-641e70fdf3c7' }], onlineUsers: 1, input: 'h', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] });
+    const testState = reducers(state, { type: 'INPUT_CHANGE', input: 'h', roomId: 1 });
+    const expectState = state;
+    expect(testState).to.eql(expectState);
   });
   it('adds message when received', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [{ user: { name: 'anonymous' }, content: 'hi', id: '355a687d-9cd4-4378-a340-eef0944011ce' }, { user: { name: 'anonymous' }, content: 'hi', id: '76431b7e-4843-4c7f-ae7b-de5fc33e5c0c' }, { user: { name: 'anonymous' }, content: 'hi', id: 'dce19e54-7c5a-4cf7-b351-641e70fdf3c7' }], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { message: { user: { name: 'anonymous' }, content: 'hello', id: '3f9348b3-3a8b-4d75-b87f-abf5bc1577af' }, type: 'RECEIVE_MESSAGE', room: 1 });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [{ user: { name: 'anonymous' }, content: 'hi', id: '355a687d-9cd4-4378-a340-eef0944011ce' }, { user: { name: 'anonymous' }, content: 'hi', id: '76431b7e-4843-4c7f-ae7b-de5fc33e5c0c' }, { user: { name: 'anonymous' }, content: 'hi', id: 'dce19e54-7c5a-4cf7-b351-641e70fdf3c7' }, { user: { name: 'anonymous' }, content: 'hello', id: '3f9348b3-3a8b-4d75-b87f-abf5bc1577af' }], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] });
+    const testState = reducers(state, { type: 'RECEIVE_MESSAGE', room: 1 });
+    const expectState = state;
+    expect(testState).to.eql(expectState);
   });
   it('removes room', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [{ user: { name: 'anonymous' }, content: 'hi', id: '355a687d-9cd4-4378-a340-eef0944011ce' }, { user: { name: 'anonymous' }, content: 'hi', id: '76431b7e-4843-4c7f-ae7b-de5fc33e5c0c' }, { user: { name: 'anonymous' }, content: 'hi', id: 'dce19e54-7c5a-4cf7-b351-641e70fdf3c7' }, { user: { name: 'anonymous' }, content: 'hello', id: '3f9348b3-3a8b-4d75-b87f-abf5bc1577af' }, { user: { name: 'anonymous' }, content: 'i', id: 'ff720013-ec6b-40b2-8dec-bc3e2886fe20' }], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { type: 'LEAVE_ROOM', roomId: 1 });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 0, rooms: [] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] });
+    const testState = reducers(state, { type: 'LEAVE_ROOM', roomId: 1 });
+    const expectState = state;
+    expectState.chat.rooms = [];
+    expectState.chat.active = 0;
+    expect(testState).to.eql(expectState);
   });
   it('joins a room', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 0, rooms: [] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { type: 'JOIN_ROOM', room: { name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 1, input: '', unread: false } });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 2, rooms: [{ name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] });
+    const testState = reducers(state, { type: 'JOIN_ROOM', room: { name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 1, input: '', unread: false } });
+    const expectState = state;
+    expectState.chat.rooms.push({ name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 1, input: '', unread: false });
+    expectState.chat.active = 2;
+    expect(testState).to.eql(expectState);
   });
   it('changes room', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 2, rooms: [{ name: 'GSW/SAS', id: 1, messages: [], onlineUsers: 1, input: '', unread: false }, { name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495926045426 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: true, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { type: 'CHANGE_ROOM', roomId: 1 });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 1, input: '', unread: false }, { name: 'GSW/SAS', id: 1, messages: [], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495926045426 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: true, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] });
+    state.chat.rooms.unshift({ name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 1, input: '', unread: false });
+    state.chat.active = 2;
+    const testState = reducers(state, { type: 'CHANGE_ROOM', roomId: 1 });
+    const expectState = state;
+    expectState.chat.active = 1;
+    expect(testState).to.eql(expectState);
   });
   it('updates user count', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 2, rooms: [{ name: 'GSW/SAS', id: 1, messages: [], onlineUsers: 2, input: '', unread: false }, { name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495926122652 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: true, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { type: 'UPDATE_USER_COUNT', room: 2, userCount: 2 });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 2, rooms: [{ name: 'GSW/SAS', id: 1, messages: [], onlineUsers: 2, input: '', unread: false }, { name: 'TOR/PIT', id: 2, messages: [], onlineUsers: 2, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495926122652 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: true, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] });
+    const testState = reducers(state, { type: 'UPDATE_USER_COUNT', room: 1, userCount: 2 });
+    const expectState = state;
+    expectState.chat.rooms[0].onlineUsers = 2;
+    expect(testState).to.eql(expectState);
   });
 });
 
 describe('cards', () => {
+  let state;
+  beforeEach(() => {
+    state = {
+      user: {
+        name: 'anonymous'
+      },
+      chat: {
+        active: 1,
+        rooms: [
+          {
+            name: 'GSW/SAS',
+            id: 1,
+            messages: [],
+            onlineUsers: 1,
+            input: 'hello',
+            unread: false }
+        ] },
+      sidebar:
+      {
+        gamesNHL: [],
+        gamesNFL: [],
+        gamesMLB: [],
+        gamesNBA: [],
+        receivedAt: 1495923999551
+      },
+      cards: [
+        {
+          gameId: 1,
+          league: 'NBA',
+          homeTeam: 'SAS',
+          awayTeam: 'GSW',
+          homeScore: 91,
+          awayScore: 120,
+          quarter: '4',
+          timeRemaining: '10:09',
+          displayPlayByPlay: false,
+          scoreLoading: false,
+          gameOver: true,
+          plays: [],
+          gameStarted: true
+        },
+        { gameId: 2,
+          league: 'MLB',
+          homeTeam: 'PIT',
+          awayTeam: 'TOR',
+          homeScore: 5,
+          awayScore: 6,
+          displayPlayByPlay: false,
+          scoreLoading: false,
+          currentInning: '4',
+          currentInningHalf: 'top',
+          innings: [
+            {
+              inning: 1,
+              awayScore: 2,
+              homeScore: 0
+            }
+          ],
+          plays: [],
+          gameStarted: true,
+          gameCompleted: false
+        }
+      ]
+    };
+  });
   it('toggle play by play', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: true, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { type: 'TOGGLE_PLAY_BY_PLAY', gameId: 1 });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 1, rooms: [{ name: 'GSW/SAS', id: 1, messages: [], onlineUsers: 1, input: '', unread: false }] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] });
+    const testState = reducers(state, { type: 'TOGGLE_PLAY_BY_PLAY', gameId: 1 });
+    const expectState = state;
+    expectState.cards[0].displayPlayByPlay = true;
+    expect(testState).to.eql(expectState);
   });
   it('remove a card', () => {
-    let state;
-    state = reducers({ user: { name: 'anonymous' }, chat: { active: 0, rooms: [] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }, { gameId: 2, league: 'MLB', homeTeam: 'PIT', awayTeam: 'TOR', homeScore: 5, awayScore: 6, displayPlayByPlay: false, scoreLoading: false, currentInning: '4', currentInningHalf: 'top', innings: [{ inning: 1, awayScore: 2, homeScore: 0 }], plays: [], gameStarted: true, gameCompleted: false }] }, { type: 'REMOVE_CARD', gameId: 2 });
-    expect(state).to.eql({ user: { name: 'anonymous' }, chat: { active: 0, rooms: [] }, sidebar: { gamesNHL: [], gamesNFL: [], gamesMLB: [], gamesNBA: [], receivedAt: 1495923999551 }, cards: [{ gameId: 1, league: 'NBA', homeTeam: 'SAS', awayTeam: 'GSW', homeScore: 91, awayScore: 120, quarter: '4', timeRemaining: '10:09', displayPlayByPlay: false, scoreLoading: false, gameOver: true, plays: [], gameStarted: true }] });
+    const testState = reducers(state, { type: 'REMOVE_CARD', gameId: 2 });
+    const expectState = state;
+    expectState.cards.splice(1, 2);
+    expect(testState).to.eql(expectState);
   });
 });
