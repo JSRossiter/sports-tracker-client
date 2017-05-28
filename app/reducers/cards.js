@@ -24,10 +24,12 @@ function cards(state = defaultState, action) {
       return state.filter(card => card.gameId !== action.gameId);
     }
     case 'REPOSITION_CARD': {
-      const from = action.oldPos;
-      const cardOrder = state.slice(0, from).concat(state.slice(from + 1));
-      const newCards = cardOrder.slice(0, action.newPos).concat(state[from]).concat(cardOrder.slice(action.newPos));
-      return newCards;
+      const { from, to } = action;
+      if (from < 0 || from >= state.length || to < 0 || to >= state.length) return state;
+      const newArray = state.slice();
+      newArray[from] = state[to];
+      newArray[to] = state[from];
+      return newArray;
     }
     default:
       return state;

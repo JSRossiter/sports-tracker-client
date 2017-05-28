@@ -8,8 +8,8 @@ export const removeCard = gameId => ({
   gameId
 });
 
-export const repositionCard = (oldPos, newPos) => ({
+export const repositionCard = (from, to) => ({
   type: 'REPOSITION_CARD',
-  oldPos,
-  newPos
+  from,
+  to
 });
