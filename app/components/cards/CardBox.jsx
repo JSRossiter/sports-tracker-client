@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
+import { DragSource } from 'react-dnd';
 import Card from './Card';
 import cardProps from '../../prop_validations/card';
 
@@ -18,6 +19,20 @@ export default function CardBox(props) {
   const closeCard = (gameId) => {
     props.leaveRoom(gameId);
     props.removeCard(gameId);
+  };
+
+  const moveCard = (dragIndex, hoverIndex) => {
+    const { cards } = this.state;
+    const dragCard = cards[dragIndex];
+
+    this.setState(update(this.state, {
+      cards: {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, dragCard]
+        ]
+      }
+    }));
   };
 
   return (
