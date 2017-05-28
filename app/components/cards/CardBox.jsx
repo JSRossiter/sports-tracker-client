@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
 import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import MultiBackend from 'react-dnd-multi-backend';
+import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
 import Card from './Card';
 import cardProps from '../../prop_validations/card';
 
@@ -13,7 +14,7 @@ const masonryOptions = {
   stagger: 30
 };
 
-@DragDropContext(HTML5Backend)
+@DragDropContext(MultiBackend(HTML5toTouch))
 export default class CardBox extends React.Component {
 
   closeCard = (gameId) => {
