@@ -46,14 +46,14 @@ export default class TopNav extends Component {
     const isLoggedIn = this.state.isLoggedIn;
 
     return (
-      <nav className="topnav navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-        <button className="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#topnavbar" aria-controls="topnavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <nav className="topnav navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse">
+        <button className="navbar-toggler navbar-toggler-right hidden-md-up" type="button" data-toggle="collapse" data-target="#topnavbar" aria-controls="topnavbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
 
         <a className="navbar-brand" href="/">Sports Score Board</a>
 
-        <button className="navbar-toggler navbar-toggler-left hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapseLeagueItem" aria-controls="collapseLeagueItem" aria-expanded="false" aria-label="Toggle sidebar">
+        <button className="navbar-toggler navbar-toggler-left hidden-md-up" type="button" data-toggle="collapse" data-target="#collapseLeagueItem" aria-controls="collapseLeagueItem" aria-expanded="false" aria-label="Toggle sidebar">
           <span className="navbar-toggler-icon" />
         </button>
 

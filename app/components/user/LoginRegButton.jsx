@@ -50,12 +50,13 @@ export default class LoginRegButton extends Component {
   render() {
     const modalStyles = {
       content: {
-        width: '700px',
+        width: '50vw',
         padding: '30px',
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
+        zIndex: '5000',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)'
       }
