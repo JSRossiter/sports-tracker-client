@@ -120,7 +120,7 @@ const initialState = {
         { id: 8, content: 'Batter grounded out', sport: 'MLB' },
         { id: 9, content: 'Batter singled', sport: 'MLB' },
         { id: 10, content: 'Batter singled', sport: 'MLB' },
-        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored' },
+        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored-play-mlb' },
         { id: 12, content: 'Batter singled', sport: 'MLB' },
         { id: 13, content: 'Batter singled', sport: 'MLB' },
         { id: 14, content: 'Batter singled', sport: 'MLB' },
