@@ -6,18 +6,6 @@ import MessageBox from './MessageBox';
 import Rooms from './Rooms';
 
 class Chat extends Component {
-  static propTypes = {
-    rooms: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-    sendMessage: PropTypes.func.isRequired,
-    postMessage: PropTypes.func.isRequired,
-    postLeaveRoom: PropTypes.func.isRequired,
-    inputChange: PropTypes.func.isRequired,
-    changeRoom: PropTypes.func.isRequired,
-    leaveRoom: PropTypes.func.isRequired,
-    user: PropTypes.shape({}).isRequired,
-    input: PropTypes.string.isRequired,
-    active: PropTypes.number.isRequired
-  };
 
   componentDidUpdate() {
     // autoscroll to the latest message in message list
@@ -93,16 +81,29 @@ class Chat extends Component {
             </div>
           </div>
 
-          <MessageBox
+          { this.props.user.name && <MessageBox
             input={ this.props.input }
             onChange={ this.onChange }
             handleSubmit={ this.handleSubmit }
-          />
+          /> }
         </div>
         }
       </CSSTransitionGroup>
     );
   }
 }
+
+Chat.propTypes = {
+  rooms: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  postMessage: PropTypes.func.isRequired,
+  postLeaveRoom: PropTypes.func.isRequired,
+  inputChange: PropTypes.func.isRequired,
+  changeRoom: PropTypes.func.isRequired,
+  leaveRoom: PropTypes.func.isRequired,
+  user: PropTypes.shape({ name: PropTypes.string }).isRequired,
+  input: PropTypes.string.isRequired,
+  active: PropTypes.number.isRequired
+};
 
 export default Chat;
