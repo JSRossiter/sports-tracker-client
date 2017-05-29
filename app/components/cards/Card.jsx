@@ -36,41 +36,60 @@ const cardTarget = {
 }))
 @DragSource('card', cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
+  connectDragPreview: connect.dragPreview()
 }))
 export default class Card extends React.Component {
 
   render() {
-    const { isDragging, connectDragSource, connectDropTarget, isOver } = this.props;
+    const {
+      isDragging,
+      connectDragSource,
+      connectDropTarget,
+      connectDragPreview,
+      isOver,
+      displayPlayByPlay,
+      league,
+      plays,
+      joinRoom,
+      gameId,
+      togglePlayByPlay,
+      gameStarted
+    } = this.props;
     const name = `${this.props.awayTeam}/${this.props.homeTeam}`;
     const opacity = isDragging || isOver ? 0.5 : 1;
+    const previewOptions = {
+      captureDraggingState: true,
+      anchorX: 0,
+      anchorY: 0
+    };
 
-    return connectDragSource(connectDropTarget(
+    return connectDragSource(connectDropTarget(connectDragPreview(
       <div className="game-card" style={ { opacity } }>
-        { this.props.league === 'NBA' && <CardMainNBA
+        { league === 'NBA' && <CardMainNBA
           { ...this.props }
         />
     }
-        { this.props.league === 'MLB' && <CardMainMLB
+        { league === 'MLB' && <CardMainMLB
           { ...this.props }
         />
     }
-        { this.props.league === 'NHL' && <CardMainNHL
+        { league === 'NHL' && <CardMainNHL
           { ...this.props }
         />
     }
 
-        <PlayByPlay plays={ this.props.plays } display={ this.props.displayPlayByPlay } />
+        { displayPlayByPlay && <PlayByPlay plays={ plays } /> }
 
         <CardFooter
           name={ name }
-          joinRoom={ this.props.joinRoom }
-          gameId={ this.props.gameId }
-          togglePlayByPlay={ this.props.togglePlayByPlay }
-          gameStarted={ this.props.gameStarted }
+          joinRoom={ joinRoom }
+          gameId={ gameId }
+          togglePlayByPlay={ togglePlayByPlay }
+          gameStarted={ gameStarted }
         />
       </div>
-    ));
+    , previewOptions)));
   }
 }
 
