@@ -6,22 +6,21 @@ export default class TopNav extends Component {
 
   // check for sessions on page refresh
   componentDidMount() {
+    const HOST = location.origin.replace('8081', '8080');
+
     $.ajax({
-      url: '/checkifloggedin',
+      url: `${HOST}/checkifloggedin`,
       dataType: 'json',
       type: 'GET',
       xhrFields: { withCredentials: true },
       success: (result) => {
         this.login(result.username);
-      },
-      error: (err) => {
-        console.error(err);
       }
     });
   }
 
   render() {
-    const { username, login, logout } = this.props;
+    const { username, login, logout, notify } = this.props;
 
     return (
       <nav className="topnav navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse">
@@ -37,7 +36,7 @@ export default class TopNav extends Component {
 
         <div className="collapse navbar-collapse" id="topnavbar">
 
-          { username ? (<LogoutButton handleLogoutSession={ logout } user={ username } />) : (<LoginRegButton handleLoginSession={ login } />) }
+          { username ? (<LogoutButton notify={ notify } handleLogoutSession={ logout } user={ username } />) : (<LoginRegButton handleLoginSession={ login } notify={ notify } />) }
 
         </div>
 
