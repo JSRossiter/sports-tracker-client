@@ -27,7 +27,7 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive }) => {
 };
 
 LeagueItem.propTypes = {
-  gameData: PropTypes.arrayOf().isRequired,
+  gameData: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   leagueClick: PropTypes.func.isRequired,
   league: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired

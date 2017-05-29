@@ -26,10 +26,9 @@ class Chat extends Component {
   }
 
   handleSubmit = (event) => {
-    const { user, input, active, sendMessage, postMessage } = this.props;
+    const { user, input, active, postMessage } = this.props;
     event.preventDefault();
     if (input !== '') {
-      sendMessage();
       const message = {
         room: active,
         message: {
@@ -42,9 +41,8 @@ class Chat extends Component {
   }
 
   closeChat = (roomId) => {
-    const { leaveRoom, postLeaveRoom } = this.props;
+    const { leaveRoom } = this.props;
     leaveRoom(roomId);
-    postLeaveRoom(roomId);
   }
 
   render() {
@@ -95,12 +93,10 @@ class Chat extends Component {
 
 Chat.propTypes = {
   rooms: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-  sendMessage: PropTypes.func.isRequired,
   postMessage: PropTypes.func.isRequired,
-  postLeaveRoom: PropTypes.func.isRequired,
+  leaveRoom: PropTypes.func.isRequired,
   inputChange: PropTypes.func.isRequired,
   changeRoom: PropTypes.func.isRequired,
-  leaveRoom: PropTypes.func.isRequired,
   user: PropTypes.shape({ name: PropTypes.string }).isRequired,
   input: PropTypes.string.isRequired,
   active: PropTypes.number.isRequired
