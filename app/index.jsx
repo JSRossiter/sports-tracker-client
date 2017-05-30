@@ -179,7 +179,7 @@ const initialState = {
     receivedAt: Date.now()
   },
   modal: {
-    display: 'NONE'
+    modal: 'NONE'
   }
 };
 

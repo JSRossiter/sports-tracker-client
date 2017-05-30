@@ -28,7 +28,7 @@ class ModalWrapper extends Component {
     };
     return (
       <Modal
-        isOpen={ this.props.modal.display !== 'NONE' }
+        isOpen={ this.props.modal.modal !== 'NONE' }
         onRequestClose={ this.props.closeModal }
         onAfterOpen={ this.onModalOpen }
         style={ modalStyles }

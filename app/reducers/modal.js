@@ -6,7 +6,7 @@ export default (state = 'NONE', action) => {
         ...action
       };
     case 'CLOSE_MODAL':
-      return { display: 'NONE' };
+      return { modal: 'NONE' };
     default:
       return state;
   }

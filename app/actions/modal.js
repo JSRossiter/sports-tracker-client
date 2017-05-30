@@ -1,7 +1,8 @@
-export function showModal(modal) {
+export function showModal(modal, info) {
   return {
     type: 'SHOW_MODAL',
-    modal
+    modal,
+    info
   };
 }
 

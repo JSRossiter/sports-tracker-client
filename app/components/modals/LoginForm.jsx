@@ -5,7 +5,9 @@ import fetchCards from '../../lib/fetch_cards';
 export default class LoginForm extends Component {
   static propTypes = {
     close: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired,
+    notify: PropTypes.func.isRequired,
+    receiveCard: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -16,6 +18,15 @@ export default class LoginForm extends Component {
     };
   }
 
+  resetState = () => {
+    this.setState({
+      username: '',
+      password: ''
+    });
+    $('#formUser').val('');
+    $('#formPassword').val('');
+  }
+
   handleKeyChange = key => (event) => {
     this.setState({ [key]: event.target.value });
   }
@@ -23,10 +34,6 @@ export default class LoginForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = {
-      username: this.state.username,
-      password: this.state.password
-    };
     const HOST = location.origin.replace('8081', '8080');
 
     const loginSuccess = {
@@ -44,74 +51,78 @@ export default class LoginForm extends Component {
       dismissAfter: 2000
     };
 
-    // error checking
-    if (formData.username.length < 1 || formData.password.length < 1) {
-      return false;
-    }
-
-    $.ajax({
-      url: `${HOST}/login`,
-      dataType: 'json',
-      type: 'POST',
-      data: formData,
-      xhrFields: { withCredentials: true },
-      success: (result) => {
+    fetch(`${HOST}/login`, {
+      method: 'post',
+      mode: 'cors',
+      credentials: 'include',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error('Looks like there was a problem with login. Status Code:', response.status);
+        return response.json();
+      }
+      response.json().then((data) => {
         this.props.close();
-        this.props.login(result.username);
-        loginSuccess.message = `Logged in as ${result.username}`;
+        this.props.login(data.username);
+        loginSuccess.message = `Logged in as ${data.username}`;
         fetchCards(this.props.receiveCard);
         this.props.notify(loginSuccess);
-      },
-      error: (err) => {
-        this.props.close();
-        loginError.message = `${err.responseJSON.message}`;
-        this.props.notify(loginError);
-      }
+      });
+    })
+    .catch((err) => {
+      this.props.close();
+      loginError.message = `${err.message}`;
+      this.props.notify(loginError);
     });
-
-    // reset state after form submission
-    this.setState({
-      username: '',
-      password: ''
-    });
+    this.resetState();
   };
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit }>
-        <div className="form-group row pr-3 pl-3">
-          <label
-            htmlFor="formUser"
-            className="col-form-label-sm"
-          >
+      <div>
+        <h3 className="pl-0 d-flex modal-header">
+        Login: <i className="fa fa-times justify-content-right" onClick={ this.props.close } />
+        </h3>
+        <form onSubmit={ this.handleSubmit }>
+          <div className="form-group row pr-3 pl-3">
+            <label
+              htmlFor="formUser"
+              className="col-form-label-sm"
+            >
             User Name:
           </label>
-          <input
-            id="formUser"
-            className="form-control"
-            name="username"
-            placeholder="Your username"
-            type="text"
-            onChange={ this.handleKeyChange('username') }
-          />
-        </div>
-        <div className="form-group row pl-3 pr-3">
-          <label
-            htmlFor="formPassword"
-            className="col-form-label-sm"
-          >
+            <input
+              id="formUser"
+              className="form-control"
+              name="username"
+              placeholder="Your username"
+              type="text"
+              onChange={ this.handleKeyChange('username') }
+            />
+          </div>
+          <div className="form-group row pl-3 pr-3">
+            <label
+              htmlFor="formPassword"
+              className="col-form-label-sm"
+            >
             Password:
           </label>
-          <input
-            id="formPassword"
-            className="form-control"
-            name="password"
-            type="password"
-            onChange={ this.handleKeyChange('password') }
-          />
-        </div>
-        <button className="btn btn-primary pull-right" type="submit">Login</button>
-      </form>
+            <input
+              id="formPassword"
+              className="form-control"
+              name="password"
+              type="password"
+              onChange={ this.handleKeyChange('password') }
+            />
+          </div>
+          <button className="btn btn-primary pull-right" type="submit">Login</button>
+        </form>
+      </div>
     );
   }
 }
