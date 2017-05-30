@@ -21,15 +21,6 @@ class Sidebar extends Component {
     api.get(`${HOST}/leagues/nhl`).then((response) => {
       dispatch(receiveNHL(response.response));
     });
-    // api.get(`${HOST}/leagues/nba`).then((response) => {
-    //   dispatch(receiveNBA(response.response));
-    // });
-    // api.get(`${HOST}/leagues/nfl`).then((response) => {
-    //   dispatch(receiveNFL(response.response));
-    // });
-    // api.get(`${HOST}/leagues/mlb`).then((response) => {
-    //   dispatch(receiveMLB(response.response));
-    // });
 
     api.get(`${HOST}/users/get`).then((response) => {
       if (Object.keys(response.response).length) {
@@ -41,10 +32,20 @@ class Sidebar extends Component {
       }
     });
 
+<<<<<<< HEAD
     const pathArray = window.location.pathname.split('/');
     if (pathArray[0] === 'game') {
       this.addCard();
     }
+=======
+    $('.sidebar').on(('shown.bs.collapse'), function(){
+      $('body').addClass('noScroll');
+    });
+
+    $('.sidebar').on(('hidden.bs.collapse'), function(){
+      $('body').removeClass('noScroll');
+    });
+>>>>>>> master
   }
 
   addCard = (gameProps) => {
