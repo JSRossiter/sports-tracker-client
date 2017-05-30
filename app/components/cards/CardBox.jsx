@@ -7,6 +7,7 @@ import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
 import dndBackend from '../../lib/dndBackend';
 import Card from './Card';
 import cardProps from '../../prop_validations/card';
+import api from '../../lib/api';
 
 const masonryOptions = {
   transitionDuration: 500,
@@ -18,9 +19,13 @@ const masonryOptions = {
 @DragDropContext(MultiBackend(dndBackend))
 export default class CardBox extends React.Component {
 
+
   closeCard = (gameId) => {
+    const HOST = location.origin.replace('8081', '8080');
     this.props.leaveRoom(gameId);
     this.props.removeCard(gameId);
+    const gameid = { gameId }
+    api.post(`${HOST}/users/remove`, gameid).then(result => console.log('works'));
   };
 
   moveCard = (dragIndex, hoverIndex) => {
@@ -51,6 +56,7 @@ export default class CardBox extends React.Component {
               closeCard={ this.closeCard }
               moveCard={ this.moveCard }
               index={ i }
+              notify={ this.props.notify }
               { ...card }
             />
         ))}
