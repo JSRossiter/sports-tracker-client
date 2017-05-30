@@ -6,7 +6,8 @@ import LoginForm from './LoginForm';
 
 export default class LoginRegButton extends Component {
   static propTypes = {
-    handleLoginSession: PropTypes.func.isRequired
+    handleLoginSession: PropTypes.func.isRequired,
+    showModal: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -71,7 +72,7 @@ export default class LoginRegButton extends Component {
     return (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item text-right pb-2 pt-2">
-          <a className="reg-btn navitem" onClick={ this.regOpenModal }>Registration</a>
+          <a className="reg-btn navitem" onClick={ () => this.props.showModal('REGISTER') }>Registration</a>
           <Modal
             isOpen={ this.state.regModalIsOpen }
             onRequestClose={ this.regCloseModal }
@@ -90,7 +91,7 @@ export default class LoginRegButton extends Component {
         </li>
 
         <li className="nav-item text-right pb-2 pt-2">
-          <a className="login-btn navitem" onClick={ this.loginOpenModal }>Login</a>
+          <a className="login-btn navitem" onClick={ () => this.props.showModal('LOGIN') }>Login</a>
           <Modal
             isOpen={ this.state.loginModalIsOpen }
             onRequestClose={ this.loginCloseModal }

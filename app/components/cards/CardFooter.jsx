@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import ShareForm from '../share/ShareForm';
+import ShareForm from '../modals/ShareForm';
 
 export default class CardFooter extends Component {
   constructor(props) {
@@ -73,7 +73,7 @@ export default class CardFooter extends Component {
         <div className="game-card-social">
           {/* share game with someone */}
           <a
-            onClick={ this.shareOpenModal }
+            onClick={ () => this.props.showModal('SHARE') }
             role="button"
             tabIndex={ 0 }
             className="game-card-tooltip"
@@ -141,6 +141,7 @@ CardFooter.propTypes = {
   gameStarted: PropTypes.bool.isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
   awayTeam: PropTypes.string.isRequired,
   homeTeam: PropTypes.string.isRequired,
