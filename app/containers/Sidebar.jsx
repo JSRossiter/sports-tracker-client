@@ -8,11 +8,6 @@ import api from '../lib/api';
 
 class Sidebar extends Component {
 
-  static propTypes = {
-    receivedAt: PropTypes.number.isRequired,
-    dispatch: PropTypes.func.isRequired
-  }
-
   constructor(props) {
     super(props);
     // to identify league that has been clicked
@@ -37,15 +32,38 @@ class Sidebar extends Component {
     // });
 
     api.get(`${HOST}/users/get`).then((response) => {
-      if(Object.keys(response.response).length){
-        response.response.forEach(card => {
+      if (Object.keys(response.response).length) {
+        response.response.forEach((card) => {
           api.post(`${HOST}/leagues/${card.league}/games/${card.gameId}`, card).then((response) => {
             dispatch(receiveCard(response.response));
           });
-        })
+        });
       }
     });
+
+    const pathArray = window.location.pathname.split('/');
+    if (pathArray[0] === 'game') {
+      this.addCard();
+    }
   }
+
+  addCard = (gameProps) => {
+    const { dispatch } = gameProps;
+    const HOST = location.origin.replace('8081', '8080');
+    const game = {
+      gameId: gameProps.gameId,
+      league: gameProps.league,
+      homeTeam: gameProps.homeTeam.Abbreviation,
+      awayTeam: gameProps.awayTeam.Abbreviation,
+      location: gameProps.homeTeam.City,
+      time: gameProps.time,
+      date: gameProps.date
+    };
+    api.post(`${HOST}/leagues/${gameProps.league}/games/${gameProps.gameId}`, game).then((response) => {
+      dispatch(receiveCard(response.response));
+    });
+    $('.sidebar').removeClass('show');
+  };
 
   // handle toggle highlight of league
   leagueClick(league) {
@@ -68,6 +86,7 @@ class Sidebar extends Component {
                 league={ league.name }
                 gameData={ league.data }
                 isActive={ this.state.activeLeague === league.name }
+                addCard={ this.addCard }
               />
             ))
           }
