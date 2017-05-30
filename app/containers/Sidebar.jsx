@@ -33,9 +33,9 @@ class Sidebar extends Component {
     // api.get(`${HOST}/leagues/nfl`).then((response) => {
     //   dispatch(receiveNFL(response.response));
     // });
-    // api.get(`${HOST}/leagues/mlb`).then((response) => {
-    //   dispatch(receiveMLB(response.response));
-    // });
+    api.get(`${HOST}/leagues/mlb`).then((response) => {
+      dispatch(receiveMLB(response.response));
+    });
 
     api.get(`${HOST}/users/get`).then((response) => {
       if(Object.keys(response.response).length){
