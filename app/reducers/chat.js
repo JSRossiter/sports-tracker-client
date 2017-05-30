@@ -1,6 +1,7 @@
 const defaultState = {
   active: 0,
-  rooms: []
+  rooms: [],
+  emojiPicker: false
 };
 
 function chat(state = defaultState, action) {
@@ -71,6 +72,12 @@ function chat(state = defaultState, action) {
           ...otherRooms,
           roomToUpdate
         ]
+      };
+    }
+    case 'TOGGLE_EMOJI': {
+      return {
+        ...state,
+        emojiPicker: !state.emojiPicker
       };
     }
     case 'CHANGE_ROOM': {

@@ -327,3 +327,12 @@
 .emoji-mart-skin-tone-6 {
   background-color: #594539
 }
+
+.emoji-mart-scroll {
+  border-bottom: 0;
+  margin-bottom: 6px;
+}
+
+.emoji-mart-scroll+.emoji-mart-bar {
+  display: none;
+}
