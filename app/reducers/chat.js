@@ -61,6 +61,18 @@ function chat(state = defaultState, action) {
         ]
       };
     }
+    case 'ADD_EMOJI': {
+      const roomToUpdate = state.rooms.find(room => room.id === state.active);
+      const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
+      roomToUpdate.input += ` ${action.emoji}`;
+      return {
+        ...state,
+        rooms: [
+          ...otherRooms,
+          roomToUpdate
+        ]
+      };
+    }
     case 'CHANGE_ROOM': {
       const roomToUpdate = state.rooms.find(room => room.id === action.roomId);
       const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
