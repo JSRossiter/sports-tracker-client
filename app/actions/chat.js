@@ -9,6 +9,12 @@ export const inputChange = (input, roomId) => ({
   roomId
 });
 
+export const addEmoji = (emoji, roomId) => ({
+  type: 'ADD_EMOJI',
+  emoji,
+  roomId
+});
+
 export const joinRoom = room => ({
   type: 'JOIN_ROOM',
   payload: {
