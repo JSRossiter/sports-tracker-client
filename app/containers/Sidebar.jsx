@@ -41,7 +41,7 @@ class Sidebar extends Component {
         api.post(`${HOST}/leagues/${card.league}/games/${card.gameId}`, card).then((response) => {
           dispatch(receiveCard(response.response));
         });
-      })
+      });
     });
   }
 
