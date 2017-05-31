@@ -20,7 +20,7 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive, addCard }) => {
         </div>
       </li>
       <ul className="sub-menu collapse pl-0 league-heading" id={ league }>
-        {gameData.map((day) => {
+        {gameData.map((day, i) => {
           if (day.length === 0) return null;
           const dateString = moment(day[0].date).format('MMM Do');
           return (
@@ -34,7 +34,7 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive, addCard }) => {
                   { dateString }
                 </div>
               </li>
-              <ul className="sub-menu collapse pl-0 date-heading" id={ `MLB${day[0].date}` }>
+              <ul className={ `sub-menu collapse pl-0 date-heading${i === 0 ? ' show' : ''}` } id={ `MLB${day[0].date}` }>
                 { day.map(game => (
                   <Game
                     key={ game.gameId }
