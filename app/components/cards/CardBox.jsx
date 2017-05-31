@@ -84,7 +84,7 @@ CardBox.propTypes = {
         id: PropTypes.number.isRequired,
         content: PropTypes.string.isRequired
       }).isRequired).isRequired
-    }).isRequired,
+    }),
     PropTypes.shape({
       homeTeam: PropTypes.string.isRequired,
       awayTeam: PropTypes.string.isRequired,
