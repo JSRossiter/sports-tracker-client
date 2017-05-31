@@ -27,7 +27,7 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive, addCard }) => {
             <ul key={ dateString } className="nav nav-pills mb-0 flex-column">
               <li className="nav-item" data-toggle="collapse" data-target={ `#MLB${day[0].date}` }>
                 <div
-                  className="d-flex justify-content-center date-heading pl-0 pt-3 pb-3 nav-link"
+                  className="d-flex justify-content-center date-heading nav-link"
                   role="button"
                   tabIndex={ 0 }
                 >
