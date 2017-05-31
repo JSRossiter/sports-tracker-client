@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loader from 'halogen/ScaleLoader';
+import Loader from 'halogenium/ScaleLoader';
 import Masonry from 'react-masonry-component';
 import { DragDropContext } from 'react-dnd';
 import MultiBackend, { Preview } from 'react-dnd-multi-backend';
