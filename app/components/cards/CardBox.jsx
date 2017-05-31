@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loader from 'halogenium/ScaleLoader';
 import Masonry from 'react-masonry-component';
 import { DragDropContext } from 'react-dnd';
 import MultiBackend, { Preview } from 'react-dnd-multi-backend';
@@ -53,32 +52,7 @@ export default class CardBox extends React.Component {
         >
           { allCards.map((card, i) => {
             if (card.isLoading) {
-              return (
-                <div key={ card.gameId } className="game-card loading">
-                  <div className="d-flex justify-content-around game-card-main">
-                    <div className="d-flex flex-column">
-                      <div className="text-center">
-                        <span className="nba-team-name">{card.awayTeam}</span>
-                      </div>
-                    </div>
 
-                    <div className="d-flex flex-column">
-                      <div>
-                        <span className="nba-team-name">{card.homeTeam}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Loader className="game-card-loader" color={ 'aqua' } />
-                  <aside
-                    className="close-game-card"
-                    onClick={ () => this.closeCard(card.gameId) }
-                    role="button"
-                    tabIndex={ 0 }
-                  >
-                    <i className="fa fa-times exit-room" />
-                  </aside>
-                </div>
-              );
             }
             return (
               <Card
