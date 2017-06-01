@@ -6,6 +6,7 @@ export default class FavoriteForm extends Component {
   static propTypes = {
     close: PropTypes.func.isRequired,
     notify: PropTypes.func.isRequired,
+    receiveFavorites: PropTypes.func.isRequired,
     username: PropTypes.string.isRequired
   }
 
@@ -71,8 +72,7 @@ export default class FavoriteForm extends Component {
     })
     .then((data) => {
       this.props.close();
-
-      // TODO dispatch action
+      this.props.receiveFavorites(data.games);
       favoriteSuccess.message = `${data.team} has been added to your favorite teams`;
       this.props.notify(favoriteSuccess);
     })

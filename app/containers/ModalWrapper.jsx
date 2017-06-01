@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { addNotification as notify } from 'reapop';
-import { login, closeModal, receiveCard, addCard } from '../actions';
+import { login, closeModal, receiveCard, addCard, receiveFavorites } from '../actions';
 import ModalConductor from '../components/modals/ModalConductor';
 
 class ModalWrapper extends Component {
@@ -56,7 +56,8 @@ const mapDispatchToProps = {
   closeModal,
   notify,
   addCard,
-  receiveCard
+  receiveCard,
+  receiveFavorites
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalWrapper);

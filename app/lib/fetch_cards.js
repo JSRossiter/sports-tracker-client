@@ -1,6 +1,12 @@
 import api from './api';
 
-export default (addCard, receiveCard) => {
+export default (addCard, receiveCard, receiveFavorites, notify) => {
+  const cardError = {
+    title: 'Problem fetching data',
+    status: 'error',
+    dismissible: true,
+    dismissAfter: 2000
+  };
   const HOST = location.origin.replace('8081', '8080');
   api.get(`${HOST}/users/get`).then((response) => {
     if (Object.keys(response.response).length) {
@@ -9,14 +15,16 @@ export default (addCard, receiveCard) => {
         api.post(`${HOST}/leagues/${card.league}/games/${card.gameId}`, card).then((data) => {
           receiveCard(data.response);
         })
-        .catch((err) => {
-          console.log(`Unable to fetch game data for ${card.league} game ${card.gameId}`);
-          console.log(err.message);
+        .catch(() => {
+          cardError.message = `Unable to fetch game data for ${card.league} game ${card.gameId}`;
+          notify(cardError);
         });
       });
     }
+    receiveFavorites(response.favorites);
   })
-  .catch((err) => {
-    console.log(`Unable to fetch users cards: ${err.message}`);
+  .catch(() => {
+    cardError.message = 'Unable to fetch users cards';
+    notify(cardError);
   });
 };

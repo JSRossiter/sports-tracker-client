@@ -134,6 +134,10 @@ class GameList extends Component {
   }
 }
 
+GameList.defaultProps = {
+  username: ''
+};
+
 GameList.propTypes = {
   leagues: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   favoriteGames: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -145,7 +149,7 @@ GameList.propTypes = {
   notify: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
   addCard: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired
+  username: PropTypes.string
 };
 
 export default GameList;
