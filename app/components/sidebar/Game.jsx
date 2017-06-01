@@ -22,7 +22,14 @@ const Game = (props) => {
     api.post(`${HOST}/leagues/${gameProps.league}/games/${gameProps.gameId}`, game).then((response) => {
       dispatch(receiveCard(response.response));
     }).catch((err) => {
-      console.log(`Error adding card: ${err.message}`);
+      props.notify({
+        title: 'Problem fetching data',
+        status: 'error',
+        dismissible: true,
+        message: err.responseJSON.message,
+        dismissAfter: 2000
+      });
+      props.failedCardLoad(gameProps.gameId);
     });
     $('.sidebar').removeClass('show');
   };

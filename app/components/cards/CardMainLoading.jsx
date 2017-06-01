@@ -18,7 +18,8 @@ const CardMainLoading = ({ ...props }) => (
         </div>
       </div>
     </div>
-    <Loader className="game-card-loader" color={ 'aqua' } />
+    { props.failedLoad || <Loader className="game-card-loader" color={ 'aqua' } /> }
+    { props.failedLoad && <div className="failed-load">No game data available at this time</div> }
     <aside
       className="close-game-card"
       onClick={ () => props.closeCard(props.gameId) }

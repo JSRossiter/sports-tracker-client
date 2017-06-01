@@ -94,6 +94,7 @@ class GameList extends Component {
   }
 
   render() {
+    const { notify, failedCardLoad } = this.props;
     return (
       <nav className="col-sm-3 bg-faded navbar-collapse collapse sidebar pt-0" id="collapseLeagueItem">
         <h5 className="d-flex justify-content-center mb-0 league-game-heading">Leagues & Games</h5>
@@ -105,6 +106,8 @@ class GameList extends Component {
             favoriteGames={ this.props.favoriteGames }
             isActive={ this.state.activeLeague === 'Favorite Teams' }
             leagueClick={ this.leagueClick.bind(this, 'Favorite Teams') }
+            failedCardLoad={ failedCardLoad }
+            notify={ notify }
           />}
           {
             this.props.leagues.map((league) => {
@@ -116,6 +119,8 @@ class GameList extends Component {
                   gameData={ league.data }
                   isActive={ this.state.activeLeague === league.name }
                   addCard={ this.props.addCard }
+                  failedCardLoad={ failedCardLoad }
+                  notify={ notify }
                 />);
               }
               return (<LeagueItem
@@ -125,6 +130,8 @@ class GameList extends Component {
                 gameData={ league.data }
                 isActive={ this.state.activeLeague === league.name }
                 addCard={ this.props.addCard }
+                failedCardLoad={ failedCardLoad }
+                notify={ notify }
               />);
             })
           }
@@ -145,6 +152,7 @@ GameList.propTypes = {
   receiveNBA: PropTypes.func.isRequired,
   receiveNHL: PropTypes.func.isRequired,
   receiveNFL: PropTypes.func.isRequired,
+  failedCardLoad: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,

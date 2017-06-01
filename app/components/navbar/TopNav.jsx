@@ -8,7 +8,7 @@ export default class TopNav extends Component {
 
   // check for sessions on page refresh
   componentDidMount() {
-    const { notify, receiveCard, receiveFavorites, addCard, login } = this.props;
+    const { notify, receiveCard, receiveFavorites, addCard, failedCardLoad, login } = this.props;
 
     const HOST = location.origin.replace('8081', '8080');
 
@@ -24,7 +24,7 @@ export default class TopNav extends Component {
     })
     .then((result) => {
       if (result.username !== undefined) {
-        fetchCards(addCard, receiveCard, receiveFavorites, notify);
+        fetchCards(addCard, receiveCard, receiveFavorites, notify, failedCardLoad);
       }
     });
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Game from './Game';
 
-const LeagueItem = ({ leagueClick, favoriteGames, isActive, addCard, showModal }) => {
+const LeagueItem = ({ leagueClick, notify, failedCardLoad, favoriteGames, isActive, addCard, showModal }) => {
   const activeLeagueClass = `d-flex justify-content-center league-heading pl-0 pt-3 pb-3 nav-link ${isActive ? 'active' : ''}`;
   return (
     <ul className="nav nav-pills mb-0 flex-column">
@@ -28,6 +28,8 @@ const LeagueItem = ({ leagueClick, favoriteGames, isActive, addCard, showModal }
         {favoriteGames.map(game => (
           <Game
             key={ game.gameId }
+            notify={ notify }
+            failedCardLoad={ failedCardLoad }
             addCard={ addCard }
             { ...game }
           />
@@ -43,6 +45,8 @@ const LeagueItem = ({ leagueClick, favoriteGames, isActive, addCard, showModal }
 LeagueItem.propTypes = {
   favoriteGames: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   leagueClick: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired,
+  failedCardLoad: PropTypes.func.isRequired,
   addCard: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired

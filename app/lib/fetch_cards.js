@@ -1,6 +1,6 @@
 import api from './api';
 
-export default (addCard, receiveCard, receiveFavorites, notify) => {
+export default (addCard, receiveCard, receiveFavorites, notify, failedCardLoad) => {
   const cardError = {
     title: 'Problem fetching data',
     status: 'error',
@@ -18,6 +18,7 @@ export default (addCard, receiveCard, receiveFavorites, notify) => {
         .catch(() => {
           cardError.message = `Unable to fetch game data for ${card.league} game ${card.gameId}`;
           notify(cardError);
+          failedCardLoad(card.gameId);
         });
       });
     }
