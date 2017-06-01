@@ -4,7 +4,7 @@ import Loader from 'halogenium/ScaleLoader';
 import cardProps from '../../prop_validations/card';
 
 const CardMainLoading = ({ ...props }) => (
-  <div className="game-card-main">
+  <div className="game-card-main loading">
     <div className="d-flex justify-content-around game-card-main">
       <div className="d-flex flex-column">
         <div className="text-center">
