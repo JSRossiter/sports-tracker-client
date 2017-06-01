@@ -71,14 +71,17 @@ export default class Card extends React.Component {
       <div className="game-card" style={ { opacity } }>
         { league === 'NBA' && <CardMainNBA
           { ...this.props }
+          gameStarted={ gameStarted }
         />
         }
         { league === 'MLB' && <CardMainMLB
           { ...this.props }
+          gameStarted={ gameStarted }
         />
         }
         { league === 'NHL' && <CardMainNHL
           { ...this.props }
+          gameStarted={ gameStarted }
         />
         }
         { this.props.isLoading && <CardMainLoading { ...this.props } /> }
