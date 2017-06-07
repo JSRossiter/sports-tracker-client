@@ -15,7 +15,7 @@ export default class LogoutButton extends Component {
       status: 'success',
       dismissible: true,
       dismissAfter: 3000
-    }
+    };
 
     const logoutError = {
       title: 'Logout Error',
@@ -23,7 +23,7 @@ export default class LogoutButton extends Component {
       status: 'error',
       dismissible: true,
       dismissAfter: 3000
-    }
+    };
 
     fetch(`${HOST}/logout`, {
       method: 'post',
@@ -44,12 +44,12 @@ export default class LogoutButton extends Component {
     .catch((response) => {
       logoutError.message = 'Unexpected error with logout. Please try again';
       this.props.notify(logoutError);
-    })
+    });
   }
 
   render() {
     return (
-        <ul className="navbar-nav ml-auto text-right pb-2 pt-2">
+      <ul className="navbar-nav ml-auto text-right pb-2 pt-2">
           <span className="logged-in-as mr-3">Logged in as: { this.props.user }</span>
           <li onClick={ this.handleLogout } className="nav-item">
             <a className="navitem">Logout</a>

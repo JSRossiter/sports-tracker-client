@@ -52,7 +52,7 @@ export default class RegForm extends Component {
     if (key === 'email') {
       const pass = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(event.target.value);
 
-      if(!pass) {
+      if (!pass) {
         $('.email-input').addClass('has-danger');
         $('.email-feedback').show();
         $('.email-warning-placeholder').hide();
@@ -184,7 +184,7 @@ export default class RegForm extends Component {
               required
               minLength="5"
             />
-          <div className="email-warning-placeholder">&nbsp;</div>
+            <div className="email-warning-placeholder">&nbsp;</div>
             <div className="email-feedback form-control-feedback hide">A valid email address is required</div>
           </div>
           <div className="password-input form-group row pl-3 pr-3 mb-0">

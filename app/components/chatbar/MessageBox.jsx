@@ -11,7 +11,7 @@ const MessageBox = ({ input, onChange, handleSubmit, toggleEmoji }) => {
     }
   };
 
-  const displayEmojiPicker = (e) => {
+  const displayEmojiPicker = () => {
     toggleEmoji();
     document.removeEventListener('click', removeEmojiPicker);
     document.addEventListener('click', removeEmojiPicker);

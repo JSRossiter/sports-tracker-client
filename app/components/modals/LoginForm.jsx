@@ -9,6 +9,7 @@ export default class LoginForm extends Component {
     notify: PropTypes.func.isRequired,
     receiveCard: PropTypes.func.isRequired,
     receiveFavorites: PropTypes.func.isRequired,
+    failedCardLoad: PropTypes.func.isRequired,
     addCard: PropTypes.func.isRequired
   }
 
@@ -34,7 +35,8 @@ export default class LoginForm extends Component {
   }
 
   handleSubmit = (e) => {
-    const { notify, receiveCard, receiveFavorites, addCard, login, close, failedCardLoad } = this.props;
+    const { notify, receiveCard, receiveFavorites,
+            addCard, login, close, failedCardLoad } = this.props;
 
     e.preventDefault();
 

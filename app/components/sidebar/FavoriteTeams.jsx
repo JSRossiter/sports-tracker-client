@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Game from './Game';
 
-const LeagueItem = ({ leagueClick, notify, failedCardLoad, favoriteGames, isActive, addCard, showModal }) => {
+const LeagueItem = ({ leagueClick, notify, failedCardLoad,
+                      favoriteGames, isActive, addCard, showModal }) => {
   const activeLeagueClass = `d-flex justify-content-center league-heading pl-0 pt-3 pb-3 nav-link ${isActive ? 'active' : ''}`;
   return (
     <ul className="nav nav-pills mb-0 flex-column">

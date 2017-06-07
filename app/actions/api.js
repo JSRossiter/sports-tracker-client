@@ -1,4 +1,4 @@
-export const requestFeeds = sport => ({
+export const requestFeeds = () => ({
   type: 'REQUEST_FEEDS'
 });
 
