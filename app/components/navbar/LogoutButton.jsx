@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 export default class LogoutButton extends Component {
   static propTypes = {
     handleLogoutSession: PropTypes.func.isRequired,
-    notify: PropTypes.func.isRequired
+    notify: PropTypes.func.isRequired,
+    user: PropTypes.string.isRequired
   };
 
   handleLogout = () => {
@@ -50,11 +51,11 @@ export default class LogoutButton extends Component {
   render() {
     return (
       <ul className="navbar-nav ml-auto text-right pb-2 pt-2">
-          <span className="logged-in-as mr-3">Logged in as: { this.props.user }</span>
-          <li onClick={ this.handleLogout } className="nav-item">
-            <a className="navitem">Logout</a>
-          </li>
-        </ul>
+        <span className="logged-in-as mr-3">Logged in as: { this.props.user }</span>
+        <li onClick={ this.handleLogout } className="nav-item">
+          <a className="navitem">Logout</a>
+        </li>
+      </ul>
     );
   }
 }
