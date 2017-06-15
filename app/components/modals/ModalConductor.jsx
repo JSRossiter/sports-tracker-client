@@ -6,7 +6,9 @@ import ShareForm from './ShareForm';
 import NotifyForm from './NotifyForm';
 import FavoriteForm from './FavoriteForm';
 
-const ModalConductor = ({ modal, closeModal, failedCardLoad, receiveFavorites, notify, login, addCard, receiveCard, email, username }) => {
+const ModalConductor = ({ modal, closeModal, failedCardLoad,
+                          receiveFavorites, notify, login, addCard,
+                          receiveCard, email, username }) => {
   switch (modal.modal) {
     case 'NONE':
       return null;

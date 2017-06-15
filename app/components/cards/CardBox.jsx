@@ -36,7 +36,12 @@ export default class CardBox extends React.Component {
     return (
       <main className={ chatActive ? 'dashboard chat-active' : 'dashboard' }>
         <h1>Dashboard</h1>
-        { allCards.length === 0 && <EmptyDashboard showModal={ this.props.showModal } username={ this.props.username } /> }
+
+        { allCards.length === 0 && <EmptyDashboard
+          showModal={ this.props.showModal }
+          username={ this.props.username }
+        /> }
+
         <Masonry
           className="game-card-box"
           elementType={ 'div' }

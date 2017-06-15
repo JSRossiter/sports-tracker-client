@@ -101,7 +101,7 @@ export default class NotifyForm extends Component {
 
 NotifyForm.defaultProps = {
   startTime: ''
-}
+};
 
 NotifyForm.propTypes = {
   close: PropTypes.func.isRequired,

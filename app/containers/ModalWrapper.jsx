@@ -32,10 +32,9 @@ class ModalWrapper extends Component {
     };
     return (
       <Modal
-        isOpen={ this.props.modal.modal !== 'NONE' }
-        onRequestClose={ this.props.closeModal }
         onAfterOpen={ this.onModalOpen }
         style={ modalStyles }
+        isOpen={ this.props.modal.modal !== 'NONE' }
         shouldCloseOnOverlayClick={ false }
         contentLabel="Modal"
       >

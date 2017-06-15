@@ -82,7 +82,8 @@ const CardFooter = (props) => {
 };
 
 CardFooter.defaultProps = {
-  date: ''
+  date: '',
+  startTime: ''
 };
 
 CardFooter.propTypes = {

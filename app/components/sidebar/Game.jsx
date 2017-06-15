@@ -15,6 +15,8 @@ const Game = (props) => {
       league: gameProps.league,
       homeTeam: gameProps.homeTeam.Abbreviation,
       awayTeam: gameProps.awayTeam.Abbreviation,
+      homeTeamId: gameProps.homeTeam.ID,
+      awayTeamId: gameProps.awayTeam.ID,
       time: gameProps.time,
       date: gameProps.date
     };
@@ -36,6 +38,7 @@ const Game = (props) => {
   const dateFormatted = moment(props.date).format('MMM Do');
   // const timeString = props.league === 'MLB' ? props.time : `${props.time} ${dateFormatted}`;
   const timeString = `${props.time} ${dateFormatted}`;
+
   return (
     <div className="game-container">
       <a onClick={ () => add(props) } role="button" tabIndex={ 0 }>
