@@ -15,6 +15,8 @@ const Game = (props) => {
       league: gameProps.league,
       homeTeam: gameProps.homeTeam.Abbreviation,
       awayTeam: gameProps.awayTeam.Abbreviation,
+      homeTeamId: gameProps.homeTeam.ID,
+      awayTeamId: gameProps.awayTeam.ID,
       time: gameProps.time,
       date: gameProps.date
     };

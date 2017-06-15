@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import LoginRegButton from '../user/LoginRegButton';
-import LogoutButton from '../user/LogoutButton';
+import LoginRegButton from './LoginRegButton';
+import LogoutButton from './LogoutButton';
 import fetchCards from '../../lib/fetch_cards';
 
 export default class TopNav extends Component {
@@ -92,6 +92,7 @@ TopNav.propTypes = {
   receiveFavorites: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
   addCard: PropTypes.func.isRequired,
+  failedCardLoad: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired
 }
 ;
