@@ -14,8 +14,8 @@ export default class RegForm extends Component {
       username: '',
       email: '',
       password: '',
-      usernameLengthValid: false,
-      passwordLengthValid: false,
+      usernameValid: false,
+      passwordValid: false,
       emailValid: false
     };
   }
@@ -30,58 +30,40 @@ export default class RegForm extends Component {
     $('#formPassword').val('');
   }
 
+  formValidation = (field, pass) => {
+    if (!pass) {
+      $(`.${field}-input`).addClass('has-danger');
+      $(`.${field}-feedback`).show();
+      $(`.${field}-warning-placeholder`).hide();
+      this.state[`${field}Valid`] = false;
+    } else {
+      $(`.${field}-input`).removeClass('has-danger');
+      $(`.${field}-feedback`).hide();
+      $(`.${field}-warning-placeholder`).show();
+      this.state[`${field}Valid`] = true;
+    }
+  }
+
   handleKeyChange = key => (event) => {
     this.setState({ [key]: event.target.value });
-    // validate username, email, and password input
-    if (key === 'username') {
-      // alphanumeric
-      const pass = /^\w{5}/.test(event.target.value);
-
-      if (!pass) {
-        $('.username-input').addClass('has-danger');
-        $('.username-feedback').show();
-        $('.username-warning-placeholder').hide();
-        this.state.usernameLengthValid = false;
-      } else {
-        $('.username-input').removeClass('has-danger');
-        $('.username-feedback').hide();
-        $('.username-warning-placeholder').show();
-        this.state.usernameLengthValid = true;
-      }
-    }
-    if (key === 'email') {
-      const pass = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(event.target.value);
-
-      if (!pass) {
-        $('.email-input').addClass('has-danger');
-        $('.email-feedback').show();
-        $('.email-warning-placeholder').hide();
-        this.state.emailValid = false;
-      } else {
-        $('.email-input').removeClass('has-danger');
-        $('.email-feedback').hide();
-        $('.email-warning-placeholder').show();
-        this.state.emailValid = true;
-      }
-    }
-    if (key === 'password') {
-      const pass = /^\w{8}/.test(event.target.value);
-
-      if (!pass) {
-        $('.password-input').addClass('has-danger');
-        $('.password-feedback').show();
-        $('.password-warning-placeholder').hide();
-        this.state.passwordLengthValid = false;
-      } else {
-        $('.password-input').removeClass('has-danger');
-        $('.password-feedback').hide();
-        $('.password-warning-placeholder').show();
-        this.state.passwordLengthValid = true;
-      }
+    let pass = '';
+    switch (key) {
+      case 'username':
+        pass = /^\w{5}/.test(event.target.value);
+        break;
+      case 'email':
+        pass = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(event.target.value);
+        break;
+      case 'password':
+        pass = /^\w{8}/.test(event.target.value);
+        break;
+      default:
+        break;
     }
 
-    // cannot submit form unless all inputs are valid
-    if (this.state.usernameLengthValid && this.state.emailValid && this.state.passwordLengthValid) {
+    this.formValidation(key, pass);
+
+    if (this.state.usernameValid && this.state.emailValid && this.state.passwordValid) {
       $('#reg-submit').prop('disabled', false);
     } else {
       $('#reg-submit').prop('disabled', true);
@@ -163,6 +145,7 @@ export default class RegForm extends Component {
               type="text"
               onChange={ this.handleKeyChange('username') }
               required
+              value={ this.state.username }
             />
             <div className="username-warning-placeholder">&nbsp;</div>
             <div className="username-feedback form-control-feedback hide">The username requires a minimum of 5 characters</div>
@@ -183,6 +166,7 @@ export default class RegForm extends Component {
               onChange={ this.handleKeyChange('email') }
               required
               minLength="5"
+              value={ this.state.email }
             />
             <div className="email-warning-placeholder">&nbsp;</div>
             <div className="email-feedback form-control-feedback hide">A valid email address is required</div>
@@ -202,6 +186,7 @@ export default class RegForm extends Component {
               type="password"
               onChange={ this.handleKeyChange('password') }
               required
+              value={ this.state.password }
             />
             <div className="password-warning-placeholder">&nbsp;</div>
             <div className="password-feedback form-control-feedback hide">Password requires a minimum of 8 characters</div>
