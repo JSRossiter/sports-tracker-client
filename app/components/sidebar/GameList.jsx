@@ -38,11 +38,6 @@ class GameList extends Component {
     }).catch(() => {
       notify(errorNotification);
     });
-    api.get(`${HOST}/leagues/MLB`).then((response) => {
-      receiveMLB(response.response);
-    }).catch(() => {
-      notify(errorNotification);
-    });
 
     const pathArray = window.location.pathname.split('/');
     const gameId = parseInt(pathArray[1], 10);
