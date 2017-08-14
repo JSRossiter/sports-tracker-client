@@ -1,3 +1,4 @@
 # Front end for Sports Dashboard App
 
-Full readme at https://github.com/JSRossiter/sports-tracker#readme
+This app is hosted at https://stark-falls-80172.herokuapp.com/
+Parent repository at https://github.com/JSRossiter/sports-tracker
